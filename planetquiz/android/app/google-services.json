@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "535000467603",
+    "firebase_url": "https://planetquiz-42c8e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "planetquiz-42c8e",
+    "storage_bucket": "planetquiz-42c8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535000467603:android:bf1c72ec92afe2bd27e566",
+        "android_client_info": {
+          "package_name": "com.example.planetquiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI87M-COhbD5bJZmd3IAeS56qNf2YIy8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
