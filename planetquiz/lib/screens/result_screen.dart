@@ -1,11 +1,13 @@
+import 'dart:async';
 import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_database/firebase_database.dart';
-// Załóżmy, że questions jest już zdefiniowane w twoim projekcie
+import 'package:intl/intl.dart';
 import 'package:planetquiz/models/questions.dart';
 import 'package:planetquiz/screens/first_screen.dart';
+
+String formattedDate = DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.now());
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.score});
@@ -23,20 +25,22 @@ class _ResultScreenState extends State<ResultScreen>
   bool hasDiscount = false;
   bool showDiscountCode = false;
   double opacityLevel = 0.0;
+  bool _showRetryButton = false;
+  double progress = 0.0; // Dodane do śledzenia postępu
+  Timer? _timer; // Timer dla postępu
 
   @override
   void initState() {
     super.initState();
+
     hasDiscount = widget.score > 1;
     if (hasDiscount) {
-      Future.delayed(const Duration(seconds: 0), () {
-        final code = generateDiscountCode();
-        setState(() {
-          discountCode = code;
-          showDiscountCode = true;
-        });
-        _fadeInDiscountCode();
+      final code = generateDiscountCode();
+      setState(() {
+        discountCode = code;
+        showDiscountCode = true;
       });
+      _fadeInDiscountCode();
     }
 
     _animationController = AnimationController(
@@ -53,6 +57,16 @@ class _ResultScreenState extends State<ResultScreen>
       });
 
     _animationController.forward();
+
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      setState(() {
+        progress += 0.01;
+        if (progress >= 1) {
+          _timer?.cancel();
+          _showRetryButton = true;
+        }
+      });
+    });
   }
 
   void _fadeInDiscountCode() {
@@ -64,6 +78,7 @@ class _ResultScreenState extends State<ResultScreen>
   @override
   void dispose() {
     _animationController.dispose();
+    _timer?.cancel(); // Upewnij się, że timer jest anulowany
     super.dispose();
   }
 
@@ -79,10 +94,10 @@ class _ResultScreenState extends State<ResultScreen>
   Future<void> saveDiscountCodeToRealtimeDatabase(String code) async {
     final dbRef = FirebaseDatabase.instance.ref();
     try {
-      await dbRef.child('discountCodes').push().set({
-        'code': code,
-        'used': false,
-        'createdAt': ServerValue.timestamp,
+      await dbRef.child('Kody zniżkowe QUIZ').push().set({
+        'Kod Zniżkowy': code,
+        'Użyty': false,
+        'Data': formattedDate,
       });
     } catch (e) {
       print("Błąd podczas zapisu do bazy danych: $e");
@@ -90,14 +105,12 @@ class _ResultScreenState extends State<ResultScreen>
   }
 
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                "assets/RBACKGROUND.png"), // Zastąp ścieżką do swojego obrazu tła
+            image: AssetImage("assets/RBACKGROUND.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -108,64 +121,32 @@ class _ResultScreenState extends State<ResultScreen>
               'Twój Wynik:',
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
             ),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  height: 200,
-                  width: 200,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 10,
-                    value: _animation.value * widget.score / questions.length,
-                    color: Colors.green,
-                    backgroundColor: Colors.white,
+            // Reszta Twojego widoku...
+
+            // Dodanie CircularProgressIndicator dla odliczania
+            if (!_showRetryButton)
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: CircularProgressIndicator(
+                  value: progress,
+                  backgroundColor: Colors.grey[300],
+                  color: Colors.blue,
+                  strokeWidth: 8,
+                ),
+              ),
+            if (_showRetryButton)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => const FirstScreen()),
+                    (Route<dynamic> route) => false,
                   ),
-                ),
-                Column(
-                  children: [
-                    Text(
-                      widget.score.toString(),
-                      style: const TextStyle(fontSize: 75),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      '${(widget.score / questions.length * 100).round()}%',
-                      style: const TextStyle(fontSize: 25),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            AnimatedOpacity(
-              opacity: opacityLevel,
-              duration: const Duration(seconds: 2),
-              child: Center(
-                child: Text(
-                  showDiscountCode
-                      ? 'GRATULACJE!\n Twój kod zniżkowy to:\n$discountCode'
-                      : '',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 21, fontWeight: FontWeight.bold),
+                  child: const Text('Spróbuj Ponownie'),
                 ),
               ),
-            ),
-            if (widget.score >= 1)
-              Lottie.asset('assets/animations/Win.json',
-                  width: 100, height: 100, repeat: false)
-            else
-              Lottie.asset('assets/animations/Loss.json',
-                  width: 100, height: 100, repeat: false),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: ElevatedButton(
-                onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const FirstScreen()),
-                  (Route<dynamic> route) => false,
-                ),
-                child: const Text('Spróbuj Ponownie'),
-              ),
-            ),
           ],
         ),
       ),

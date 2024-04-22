@@ -84,9 +84,16 @@ class _QuizScreenState extends State<QuizScreen> {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            Icon(widget.userRoleIcon),
+            Icon(widget.userRoleIcon), // Ikona po lewej stronie
             SizedBox(width: 10),
-            Text(widget.userRole),
+            Text(widget.userRole), // Tekst po lewej stronie
+            Spacer(), // Dodaje przestrzeń między elementami
+            // Tutaj umieszczasz logo po prawej stronie
+            Image.asset(
+              'assets/AlverniaLogo.png',
+              height: 100,
+              width: 100,
+            ), // Logo po prawej stronie
           ],
         ),
       ),

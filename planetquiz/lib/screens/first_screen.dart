@@ -53,8 +53,8 @@ class _FirstScreenState extends State<FirstScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
-        toolbarHeight: 50, // Zmienia wysokość AppBar w pionie
+        backgroundColor: Colors.black,
+        toolbarHeight: 50,
         title: Center(
           child: Image.asset(
             'assets/AlverniaLogo.png',
@@ -66,92 +66,78 @@ class _FirstScreenState extends State<FirstScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/background5.png"), // Background file path
-            fit: BoxFit
-                .cover, // Covers the entire container, maintaining the image's aspect ratio
+            image: AssetImage("assets/background5.png"),
+            fit: BoxFit.cover,
           ),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(30.0),
-          child: Column(
-            // Usunięto mainAxisAlignment, aby logo było na górze
-            children: <Widget>[
-              Image.asset(
-                'assets/LogoQuiz.png', // Path to your logo image
-                height: 200, // Adjust the height as needed
-                width: 200, // Adjust the width as needed
+        child: Stack(
+          children: <Widget>[
+            // Logo na górze
+            Positioned(
+              top: 0, // Gwarantuje, że będzie na górze
+              left: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/LogoQuiz.png',
+                height: 200,
+                width: 200,
               ),
-              SizedBox(height: 70), // Odstęp między logo a polem wyboru
-              DropdownButtonFormField<String>(
-                value: _selectedName,
-                decoration: InputDecoration(labelText: 'Wybierz swoją rolę'),
-                items:
-                    _nameOptions.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          _nameIcons[value], // Użyj mapowania do pobrania ikony
-                          size: 24.0, // Możesz dostosować rozmiar ikony
+            ),
+            // Wyśrodkowany kontent
+            Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  DropdownButtonFormField<String>(
+                    value: _selectedName,
+                    decoration:
+                        InputDecoration(labelText: 'Wybierz swoją rolę'),
+                    items: _nameOptions
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              _nameIcons[value],
+                              size: 24.0,
+                            ),
+                            SizedBox(width: 10),
+                            Text(value),
+                          ],
                         ),
-                        SizedBox(width: 3), // Odstęp między ikoną a tekstem
-                        Text(value),
-                      ],
-                    ),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedName = newValue;
-                  });
-                },
-              ),
-              SizedBox(height: 35),
-              ElevatedButton(
-                onPressed: _startQuiz,
-                child: Text(
-                  'Rozpocznij Quiz',
-                  style: TextStyle(
-                    fontSize: 16, // Ustawienie wielkości czcionki
-                    fontWeight: FontWeight.bold, // Pogrubienie czcionki
-                    color: Colors.white, // Ustawienie koloru czcionki na biały
-                  ),
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors
-                            .deepPurple; // Kolor przycisku gdy jest naciskany
-                      }
-                      return Colors.transparent; // Przejrzyste tło
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedName = newValue;
+                      });
                     },
                   ),
-                  foregroundColor:
-                      MaterialStateProperty.all(Colors.white), // Kolor tekstu
-                  overlayColor: MaterialStateProperty.all(
-                      Colors.transparent), // Kolor efektu wciśnięcia
-                  shadowColor: MaterialStateProperty.all(
-                      Colors.transparent), // Usunięcie cienia
-                  elevation: MaterialStateProperty.all(
-                      0), // Usunięcie efektu uniesienia przycisku
-                  side: MaterialStateProperty.all(BorderSide(
-                    color: Colors.white, // Kolor obramowania
-                    width: 1.0, // Szerokość obramowania
-                  )),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          30.0), // Bardziej zaokrąglone narożniki
+                  ElevatedButton(
+                    onPressed: _startQuiz,
+                    child: Text(
+                      'Rozpocznij Quiz',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.deepPurple),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-
-              SizedBox(height: 210),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
