@@ -12,7 +12,7 @@ class QuizScreen extends StatefulWidget {
     required this.userSurname,
     required this.userRole,
     required this.userRoleIcon,
-    this.backgroundImage = 'assets/Abackground.png',
+    this.backgroundImage = 'assets/animations/QuizScreenBackground.gif',
   });
 
   final String userName;
@@ -79,7 +79,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Color.fromRGBO(0, 0, 0, 1),
         toolbarHeight: 50,
         automaticallyImplyLeading: false,
         title: Row(

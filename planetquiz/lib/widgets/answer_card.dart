@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AnswerCard extends StatelessWidget {
   const AnswerCard({
@@ -27,10 +28,10 @@ class AnswerCard extends StatelessWidget {
       child: selectedAnswerIndex != null
           // if one option is chosen
           ? Container(
-              height: 70,
+              height: 100,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.white10,
+                color: Color.fromARGB(115, 84, 35, 199),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: isCorrectAnswer
@@ -46,7 +47,8 @@ class AnswerCard extends StatelessWidget {
                     child: Text(
                       question,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
+                        fontWeight:FontWeight.bold
                       ),
                     ),
                   ),
@@ -64,7 +66,7 @@ class AnswerCard extends StatelessWidget {
               height: 70,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.white10,
+                color: Color.fromARGB(108, 111, 0, 255),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: Colors.white24,

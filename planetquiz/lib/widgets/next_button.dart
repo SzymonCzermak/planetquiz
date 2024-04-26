@@ -15,7 +15,7 @@ class RectangularButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       child: SizedBox(
-        height: 50,
+        height: 70,
         width: double.infinity,
         child: Card(
           color: onPressed != null ? Colors.white24 : null,
