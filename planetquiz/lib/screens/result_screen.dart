@@ -110,7 +110,8 @@ class _ResultScreenState extends State<ResultScreen>
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/RBACKGROUND.png"),
+            image: AssetImage(
+                "assets/animations/QuizScreenBackground.gif"), // Zastąp ścieżką do swojego obrazu tła
             fit: BoxFit.cover,
           ),
         ),
@@ -121,35 +122,68 @@ class _ResultScreenState extends State<ResultScreen>
               'Twój Wynik:',
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
             ),
-            // Reszta Twojego widoku...
-
-            // Dodanie CircularProgressIndicator dla odliczania
-            if (!_showRetryButton)
-              SizedBox(
-                width: 100,
-                height: 100,
-                child: CircularProgressIndicator(
-                  value: progress,
-                  backgroundColor: Colors.grey[300],
-                  color: Colors.blue,
-                  strokeWidth: 8,
-                ),
-              ),
-            if (_showRetryButton)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: ElevatedButton(
-                  onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                        builder: (context) => const FirstScreen()),
-                    (Route<dynamic> route) => false,
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  height: 200,
+                  width: 200,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 10,
+                    value: _animation.value * widget.score / questions.length,
+                    color: Colors.green,
+                    backgroundColor: Colors.white,
                   ),
-                  child: const Text('Spróbuj Ponownie'),
+                ),
+                Column(
+                  children: [
+                    Text(
+                      widget.score.toString(),
+                      style: const TextStyle(fontSize: 75),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      '${(widget.score / questions.length * 100).round()}%',
+                      style: const TextStyle(fontSize: 25),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            AnimatedOpacity(
+              opacity: opacityLevel,
+              duration: const Duration(seconds: 2),
+              child: Center(
+                child: Text(
+                  showDiscountCode
+                      ? 'GRATULACJE!\n Twój kod zniżkowy to:\n$discountCode'
+                      : '',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 21, fontWeight: FontWeight.bold),
                 ),
               ),
+            ),
+            if (widget.score >= 1)
+              Lottie.asset('assets/animations/Win.json',
+                  width: 100, height: 100, repeat: false)
+            else
+              Lottie.asset('assets/animations/Loss.json',
+                  width: 100, height: 100, repeat: false),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: ElevatedButton(
+                onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const FirstScreen()),
+                  (Route<dynamic> route) => false,
+                ),
+                child: const Text('Spróbuj Ponownie'),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+
 }

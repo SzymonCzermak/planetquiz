@@ -28,7 +28,7 @@ class AnswerCard extends StatelessWidget {
       child: selectedAnswerIndex != null
           // if one option is chosen
           ? Container(
-              height: 100,
+              height: 70,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Color.fromARGB(115, 84, 35, 199),
