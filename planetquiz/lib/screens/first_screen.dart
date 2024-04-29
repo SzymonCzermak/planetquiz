@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:planetquiz/screens/quiz_screen.dart';
-import 'package:video_player/video_player.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
-
+import 'package:audioplayers/audioplayers.dart';
+import 'package:planetquiz/widgets/help_widget.dart';
 
 final List<String> _nameOptions = [
   'KinoManiak',
@@ -36,9 +36,29 @@ class FirstScreen extends StatefulWidget {
 class _FirstScreenState extends State<FirstScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _surnameController = TextEditingController();
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
+@override
+  void initState() {
+    super.initState();
+    _audioPlayer.setVolume(1.0);  // Ustaw maksymalną głośność
+  }
+
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  Future<void> playSound() async {
+    await _audioPlayer.play(AssetSource('sounds/Startquiz.mp3'));
+  }
   void _startQuiz() {
-    if (_selectedName != null) {
+  if (_selectedName != null) {
+    playSound();
+    Future.delayed(Duration(seconds: 1), () {
+      // Przejście do ekranu quizu po 1 sekundzie
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => QuizScreen(
           userName: _nameController.text,
@@ -47,61 +67,61 @@ class _FirstScreenState extends State<FirstScreen> {
           userRoleIcon: _nameIcons[_selectedName]!,
         ),
       ));
-    } else {
-      // Tutaj możesz dodać logikę, jeśli rola nie jest wybrana
-    }
+    });
+  } else {
+    // Logika, jeśli rola nie jest wybrana, może tu zostać, jeśli potrzebujesz
+    // Na przykład: Informacja dla użytkownika, że musi wybrać rolę
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
-    var submitTextStyle = TextStyle(
-        fontSize: 36,
-        letterSpacing: 5,
-        color: const Color.fromARGB(255, 0, 0, 0),
-        fontWeight: FontWeight.w400,);
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/animations/QuizScreenBackground.gif"),
-            fit: BoxFit.cover,
-          ),
+  var submitTextStyle = TextStyle(
+    fontSize: 36,
+    letterSpacing: 5,
+    color: const Color.fromARGB(255, 0, 0, 0),
+    fontWeight: FontWeight.w600,
+  );
+
+  return Scaffold(
+    body: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/animations/QuizScreenBackground.gif"),
+          fit: BoxFit.cover,
         ),
-        child: Stack(
-          children: <Widget>[
-            // Logo na górze
-            Positioned(
-              top: 30, // Gwarantuje, że będzie na górze
-              left: 0,
-              right: 0,
-              child: Image.asset(
-                'assets/animations/PQGIF2.gif',
-                height: 350,
-                width: 350,
-              ),
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: 30,
+            left: 0,
+            right: 0,
+            child: Image.asset(
+              'assets/animations/PQGIF2.gif',
+              height: 350,
+              width: 350,
             ),
-            // Wyśrodkowany kontent
-            Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  SizedBox(
-                    width: 550.0,  // Ustaw szerokość na 200 pikseli
-                    child:
-                  DropdownButtonFormField<String>(
+          ),
+          Positioned(
+            top: 450, // Adjust as needed to center the elements vertically
+            left: 50, // Adjust as needed to center the elements horizontally
+            right: 50,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(
+                  width: 550.0,
+                  child: DropdownButtonFormField<String>(
                     value: _selectedName,
-                    decoration:
-                        InputDecoration(labelText: 'Wybierz swoją rolę'),
-                    items: _nameOptions
-                        .map<DropdownMenuItem<String>>((String value) {
+                    decoration: InputDecoration(labelText: 'Wybierz swoją rolę'),
+                    items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Row(
                           children: <Widget>[
-                            Icon(
-                              _nameIcons[value],
-                              size: 24.0,
-                            ),
+                            Icon(_nameIcons[value], size: 24.0),
                             SizedBox(width: 10),
                             Text(value),
                           ],
@@ -113,34 +133,46 @@ class _FirstScreenState extends State<FirstScreen> {
                         _selectedName = newValue;
                       });
                     },
-                  )
                   ),
-                  SizedBox(height: 50 ,),
-                  AnimatedButton(
-                onPress: _startQuiz,
-                height: 70,
-                width: 200,
-                text: 'START',
-                isReverse: true,
-                selectedTextColor: Color(0xFFF6E00FF),
-                transitionType: TransitionType.CENTER_LR_IN,
-                textStyle: submitTextStyle,
-                backgroundColor: Color(0xFFFFD531F),
-                borderColor: Colors.white,
-                borderWidth: 1,
-                gradient: LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [Color(0xFFFFD531F), Color(0xFFF6E00FF)], // Customize colors
-  ),
-              ),
-
-                ],
+                ),
+                SizedBox(height: 60),
+                Container(
+                  child: AnimatedButton(
+                    onPress: _startQuiz,
+                    height: 100,
+                    width: 400,
+                    text: 'START',
+                    isReverse: true,
+                    selectedTextColor: Color(0xFFF6E00FF),
+                    transitionType: TransitionType.CENTER_LR_IN,
+                    textStyle: submitTextStyle,
+                    backgroundColor: Color(0xFFFFD531F),
+                    borderColor: Colors.white,
+                    borderWidth: 1,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0xFFFFD531F), Color(0xFFF6E00FF)],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 50,  // Position from the bottom of the Stack
+            right: 30,   // Position from the right of the Stack
+            child: ElevatedButton(
+              onPressed: () => showHelpOverlay(context),
+              child: Text('Jak Grać?!'),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 12, 127, 222),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

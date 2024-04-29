@@ -78,7 +78,7 @@ class AnswerCard extends StatelessWidget {
                     child: Text(
                       question,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                   ),
