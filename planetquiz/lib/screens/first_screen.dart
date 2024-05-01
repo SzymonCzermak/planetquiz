@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:planetquiz/screens/quiz_screen.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -11,7 +12,15 @@ final List<String> _nameOptions = [
   'Mistrz Reżyserii',
   'Władca Tańca',
   'Poeta Ekranu',
-  'Wirtuoz Scenariusza'
+  'Wirtuoz Scenariusza',
+  'Czarodziej Montażu',
+  'Architekt Opowieści',
+  'Kompozytor Nut',
+  'Operator Światła',
+  'Grafika Wizji',
+  'Animator Ruchu',
+  'Kreator Charakterów'
+
 ];
 
 final Map<String, IconData> _nameIcons = {
@@ -21,7 +30,14 @@ final Map<String, IconData> _nameIcons = {
   'Mistrz Reżyserii': Icons.camera_roll,
   'Władca Tańca': Icons.directions_run,
   'Poeta Ekranu': Icons.create,
-  'Wirtuoz Scenariusza': Icons.assignment
+  'Wirtuoz Scenariusza': Icons.assignment,
+  'Czarodziej Montażu': Icons.edit,
+  'Architekt Opowieści': Icons.build,
+  'Kompozytor Nut': Icons.music_note,
+  'Operator Światła': Icons.highlight,
+  'Grafika Wizji': Icons.photo_camera,
+  'Animator Ruchu': Icons.motion_photos_on,
+  'Kreator Charakterów': Icons.face
 };
 
 String? _selectedName; // Zmienna na wybraną opcję
@@ -105,7 +121,7 @@ class _FirstScreenState extends State<FirstScreen> {
             ),
           ),
           Positioned(
-            top: 450, // Adjust as needed to center the elements vertically
+            top: 425, // Adjust as needed to center the elements vertically
             left: 50, // Adjust as needed to center the elements horizontally
             right: 50,
             child: Column(
@@ -114,28 +130,36 @@ class _FirstScreenState extends State<FirstScreen> {
                 SizedBox(
                   width: 550.0,
                   child: DropdownButtonFormField<String>(
-                    value: _selectedName,
-                    decoration: InputDecoration(labelText: 'Wybierz swoją rolę'),
-                    items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Row(
-                          children: <Widget>[
-                            Icon(_nameIcons[value], size: 24.0),
-                            SizedBox(width: 10),
-                            Text(value),
-                          ],
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _selectedName = newValue;
-                      });
-                    },
+                  value: _selectedName,
+                  style: TextStyle(fontSize: 24.0),  // Zwiększ wielkość tekstu, jeśli potrzeba
+                  decoration: InputDecoration(
+                    labelText: 'Wybierz swoją rolę',
+                    labelStyle: TextStyle(fontSize: 25.0),
+                    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                   ),
+                  items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(_nameIcons[value], size: 24.0),
+                          SizedBox(width: 15),
+                          Text(
+                            value,
+                            style: TextStyle(fontSize: 24.0),
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedName = newValue;
+                    });
+                  },
                 ),
-                SizedBox(height: 60),
+                ),
+                SizedBox(height: 30),
                 Container(
                   child: AnimatedButton(
                     onPress: _startQuiz,
@@ -162,12 +186,27 @@ class _FirstScreenState extends State<FirstScreen> {
           Positioned(
             bottom: 50,  // Position from the bottom of the Stack
             right: 30,   // Position from the right of the Stack
-            child: ElevatedButton(
-              onPressed: () => showHelpOverlay(context),
-              child: Text('Jak Grać?!'),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 12, 127, 222),
+            child: SizedBox(
+              width: 120,
+              height: 80,
+              child: ElevatedButton(
+                onPressed: () => showHelpOverlay(context),
+                child: Text('Jak Grać?'),
+                style: 
+                ElevatedButton.styleFrom(
+                  foregroundColor: const Color.fromARGB(255, 0, 0, 0), backgroundColor: Color.fromARGB(255, 12, 214, 43),
+                ),
               ),
+            ),
+          ),
+          Positioned(
+            top: 700, // Zmień wartości top, left, right zgodnie z potrzebami layoutu
+            left: 100,
+            child: Lottie.asset(
+              'assets/animations/Robot.json',  // Ścieżka do twojego pliku Lottie
+              width: 300,  // Szerokość animacji
+              height: 250,  // Wysokość animacji
+              fit: BoxFit.fill,  // Dopasowanie animacji
             ),
           ),
         ],

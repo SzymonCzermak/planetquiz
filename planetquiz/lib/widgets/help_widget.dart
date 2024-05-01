@@ -13,14 +13,24 @@ void showHelpOverlay(BuildContext context) {
             mainAxisSize: MainAxisSize.min, // Makes the column height just enough for its content
             children: <Widget>[
               Text(
-                "This is the help section. Here you can provide useful information or FAQs to help users understand how to use the application.",
+                "------EKRAN STARTOWY-----\n"
+                "1.Kliknij na pasek 'Wybierz swoją rolę'.\n"+
+                "2.Wybierz nazwe która jest najbardziej zgodna z tobą!\n"+
+                "3.Kliknij przycisk 'START'.\n"+
+                "\n"+
+                "----QUIZ ZASADY------\n"+
+                "1.Przeczytaj pytanie oraz odpowiedzi.\n"+
+                "2.Wybierz jedną z nich i kliknij 'Następna'\n"+
+                "3.Kontynuuj, aż poznasz wyniki quizu.\n",
+                
+            
                 style: TextStyle(fontSize: 18.0),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text('Close'),
+                child: Text('Zamknij'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white, backgroundColor: Colors.red,
                 ),

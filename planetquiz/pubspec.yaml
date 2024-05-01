@@ -35,9 +35,11 @@ flutter:
     - assets/animations/Win.json
     - assets/AlverniaLogo.png
     - assets/Loga/
-    - assets/animations/PQGIF.gif
     - assets/animations/FirstScreen.gif
     - assets/animations/QuizScreenBackground.gif
     - assets/animations/PQGIF2.gif
+    - assets/animations/Robot.json
     - assets/sounds/
+    - assets/animations/Loss.gif
+    - assets/animations/Win.gif
 

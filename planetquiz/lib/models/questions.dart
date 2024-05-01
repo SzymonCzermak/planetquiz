@@ -2,17 +2,17 @@ import 'package:planetquiz/models/question.dart';
 
 const List<Question> questions = [
   Question(
-    question: 'Pirotechnik czy Piroman?',
+    question: 'Kto zajmuje sie eksplozjami w fimie?',
     correctAnswerIndex: 1,
     options: [
-      'a) Piroman na 100%!',
+      'a) Piroman',
       'b) Pirotechnik',
-      'c) Obie formy są poprawne',
-      'd) Nie wiem',
+      'c) Prokurator',
+      'd) Piroznawca',
     ],
   ),
   Question(
-    question: 'Gdzie znajdują się Alvernia Studios?',
+    question: 'Gdzie znajdują się Alvernia Planet?',
     correctAnswerIndex: 2,
     options: [
       'a) W Warszawie',
@@ -36,8 +36,8 @@ const List<Question> questions = [
     correctAnswerIndex: 2,
     options: [
       'a) Technika malowania tła.',
-      'b) Generowanie tła komputerowo',
-      'c) Dodanie tła za obiektami',
+      'b) Niebieskie tło',
+      'c) Technika obróbki obrazu',
       'd) Ekran dotykowy',
     ],
   ),
@@ -52,12 +52,12 @@ const List<Question> questions = [
     ],
   ),
   Question(
-    question: 'Kto jest reżyserem?',
+    question: 'Reżyserem jest:',
     correctAnswerIndex: 2,
     options: [
       'a) Osoba pisząca scenariusz.',
       'b) Aktor głównej roli.',
-      'c) Wizjoner artystyczny.',
+      'c) Autor filmu.',
       'd) Specjalista od efektów.',
     ],
   ),
@@ -72,7 +72,7 @@ const List<Question> questions = [
     ],
   ),
   Question(
-    question: 'Jaki gatunek filmowy najlepiej opisuje "Indiana Jones"?',
+    question: 'Jaki gatunek filmowy najlepiej opisuje film "Akademia Pana Kleksa"?',
     correctAnswerIndex: 3,
     options: [
       'a) Dramat',
@@ -82,13 +82,75 @@ const List<Question> questions = [
     ],
   ),
   Question(
-    question: 'Kto skomponował muzykę do filmu "Gwiezdne Wojny"?',
-    correctAnswerIndex: 1,
+    question: 'Do czego słuzy studio którego zdjecie widzisz?',
+    correctAnswerIndex: 2,
     options: [
-      'a) Hans Zimmer',
-      'b) John Williams',
-      'c) Ennio Morricone',
-      'd) Danny Elfman',
+      'a) Do nagrywania foleyów',
+      'b) Do nagrywania kwesti aktorów',
+      'c) DO nagrywania muzyki',
+      'd) Do nagrywania układów tanecznych',
     ],
   ),
+  Question(
+    question: 'Czego obrazek widzisz?(k7)',
+    correctAnswerIndex: 0,
+    options: [
+      'a) Studio postprodukcji dzwięku',
+      'b) Kino',
+      'c) Sala konferencyjna',
+      'd) Sala pokazowa',
+    ],
+  ),
+  Question(
+    question: 'Co to jest broń butaforska?',
+    correctAnswerIndex: 1,
+    options: [
+      'a) Broń niebezpieczna',
+      'b) Broń bezpieczna',
+      'c) Broń odbezpieczona',
+      'd) Broń zabezpieczona',
+    ],
+  ),
+  Question(
+    question: 'Co to jest muzyka imanentna?',
+    correctAnswerIndex: 3,
+    options: [
+      'a) Po prostu muzyka filmowa',
+      'b) Muzyka z duza ilością basu',
+      'c) Muzyka zewnętrznaa',
+      'd) Muzyka wewnętrzna',
+    ],
+  ),
+  Question(
+    question: 'Kto zaprojektował Ksenomorfa?',
+    correctAnswerIndex: 1,
+    options: [
+      'a) Szymon Wydra',
+      'b) Hans Rudolf Giger',
+      'c) Patryk Kierowik',
+      'd) Sandro Botticelli',
+    ],
+  ),
+  Question(
+    question: 'Kto zaprojektował Ksenomorfa?',
+    correctAnswerIndex: 1,
+    options: [
+      'a) Szymon Wydra',
+      'b) Hans Rudolf Giger',
+      'c) Patryk Kierowik',
+      'd) Sandro Botticelli',
+    ],
+  ),
+  Question(
+    question: 'Ile jest wszystkich kopuł w Alvernia Planet?',
+    correctAnswerIndex: 2,
+    options: [
+      'a) 6',
+      'b) 9',
+      'c) 13',
+      'd) 14',
+    ],
+  ),
+  
+  
 ];

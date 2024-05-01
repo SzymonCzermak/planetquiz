@@ -148,11 +148,11 @@ class _ResultScreenState extends State<ResultScreen>
                 ),
               ),
               if (widget.score >= 8)
-                Lottie.asset('assets/animations/Win.json',
-                    width: 150, height: 150, repeat: false),
+                Image.asset('assets/animations/Win.gif',
+                    width: 200, height: 200),
               if (widget.score < 8)
-                Lottie.asset('assets/animations/Loss.json',
-                    width: 150, height: 150, repeat: false),
+                Image.asset('assets/animations/Loss.gif',
+                    width: 150, height: 150),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: ElevatedButton(
