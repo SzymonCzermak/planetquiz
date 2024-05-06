@@ -94,7 +94,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
   var submitTextStyle = TextStyle(
-    fontSize: 36,
+    fontSize: 48,
     letterSpacing: 5,
     color: const Color.fromARGB(255, 0, 0, 0),
     fontWeight: FontWeight.w600,
@@ -135,7 +135,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   decoration: InputDecoration(
                     labelText: 'Wybierz swoją rolę',
                     labelStyle: TextStyle(fontSize: 25.0),
-                    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                    contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 25.0),
                   ),
                   items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -143,7 +143,7 @@ class _FirstScreenState extends State<FirstScreen> {
                       child: Row(
                         children: <Widget>[
                           Icon(_nameIcons[value], size: 24.0),
-                          SizedBox(width: 15),
+                          SizedBox(width:10  ),
                           Text(
                             value,
                             style: TextStyle(fontSize: 24.0),
@@ -163,15 +163,15 @@ class _FirstScreenState extends State<FirstScreen> {
                 Container(
                   child: AnimatedButton(
                     onPress: _startQuiz,
-                    height: 100,
-                    width: 400,
+                    height: 125,
+                    width: 425,
                     text: 'START',
                     isReverse: true,
                     selectedTextColor: Color(0xFFF6E00FF),
                     transitionType: TransitionType.CENTER_LR_IN,
                     textStyle: submitTextStyle,
                     backgroundColor: Color(0xFFFFD531F),
-                    borderColor: Colors.white,
+                    borderColor: Color.fromARGB(255, 26, 1, 255),
                     borderWidth: 1,
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -184,31 +184,57 @@ class _FirstScreenState extends State<FirstScreen> {
             ),
           ),
           Positioned(
-            bottom: 50,  // Position from the bottom of the Stack
-            right: 30,   // Position from the right of the Stack
+            bottom: 70,  // Position from the bottom of the Stack
+            right: 50,   // Position from the right of the Stack
             child: SizedBox(
-              width: 120,
+              width: 175,
               height: 80,
               child: ElevatedButton(
-                onPressed: () => showHelpOverlay(context),
-                child: Text('Jak Grać?'),
-                style: 
-                ElevatedButton.styleFrom(
-                  foregroundColor: const Color.fromARGB(255, 0, 0, 0), backgroundColor: Color.fromARGB(255, 12, 214, 43),
-                ),
-              ),
+  onPressed: () => showHelpOverlay(context),
+  child: Row(
+  children: [
+    Text(
+      '  Jak Grać  ',
+      style: TextStyle(
+        fontSize: 16, // Zwiększony rozmiar tekstu
+        fontWeight: FontWeight.bold, // Pogrubienie tekstu
+      ),
+    ),
+    Icon(
+  Icons.help,   // Nazwa ikony
+  size: 30.0,   // Wielkość ikony w pikselach
+)
+, // Ikona pomocnicza
+  ],
+),
+  style: ElevatedButton.styleFrom(
+    foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+    backgroundColor: Color.fromARGB(255, 9, 156, 31),
+    elevation: 10, // Dodanie cienia pod przyciskiem
+    shadowColor: Color.fromARGB(192, 185, 23, 177), // Kolor cienia
+    shape: RoundedRectangleBorder( // Dodanie ramki wokół przycisku
+      borderRadius: BorderRadius.circular(20), // Zaokrąglone rogi
+      side: BorderSide( // Dodanie ramki
+        color: Color.fromARGB(190, 73, 10, 156), // Kolor ramki
+        width: 2, // Szerokość ramki
+      ),
+    ),
+    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Dodatkowy padding dla większego przycisku
+  ),
+)
+
             ),
           ),
-          Positioned(
-            top: 700, // Zmień wartości top, left, right zgodnie z potrzebami layoutu
-            left: 100,
-            child: Lottie.asset(
-              'assets/animations/Robot.json',  // Ścieżka do twojego pliku Lottie
-              width: 300,  // Szerokość animacji
-              height: 250,  // Wysokość animacji
-              fit: BoxFit.fill,  // Dopasowanie animacji
-            ),
-          ),
+          // Positioned(
+          //   top: 700, // Zmień wartości top, left, right zgodnie z potrzebami layoutu
+          //   left: 100,
+          //   child: Lottie.asset(
+          //     'assets/animations/Robot.json',  // Ścieżka do twojego pliku Lottie
+          //     width: 300,  // Szerokość animacji
+          //     height: 250,  // Wysokość animacji
+          //     fit: BoxFit.fill,  // Dopasowanie animacji
+          //   ),
+          // ),
         ],
       ),
     ),

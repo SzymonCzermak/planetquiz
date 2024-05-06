@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:planetquiz/models/question.dart';
 
 const List<Question> questions = [
@@ -82,7 +84,7 @@ const List<Question> questions = [
     ],
   ),
   Question(
-    question: 'Do czego słuzy studio którego zdjecie widzisz?',
+    question: 'Do czego słuzy studio którego zdjecie widzisz?(k1)',
     correctAnswerIndex: 2,
     options: [
       'a) Do nagrywania foleyów',
@@ -100,6 +102,7 @@ const List<Question> questions = [
       'c) Sala konferencyjna',
       'd) Sala pokazowa',
     ],
+    imageUrl: 'assets/ping.jpg',
   ),
   Question(
     question: 'Co to jest broń butaforska?',
