@@ -74,7 +74,8 @@ const List<Question> questions = [
     ],
   ),
   Question(
-    question: 'Jaki gatunek filmowy najlepiej opisuje film "Akademia Pana Kleksa"?',
+    question:
+        'Jaki gatunek filmowy najlepiej opisuje film "Akademia Pana Kleksa"?',
     correctAnswerIndex: 3,
     options: [
       'a) Dramat',
@@ -84,12 +85,12 @@ const List<Question> questions = [
     ],
   ),
   Question(
-    question: 'Do czego słuzy studio którego zdjecie widzisz?(k1)',
+    question: 'Do czego słuzy studio ze zdjęcia?(k1)',
     correctAnswerIndex: 2,
     options: [
       'a) Do nagrywania foleyów',
       'b) Do nagrywania kwesti aktorów',
-      'c) DO nagrywania muzyki',
+      'c) Do nagrywania muzyki',
       'd) Do nagrywania układów tanecznych',
     ],
   ),
@@ -154,6 +155,4 @@ const List<Question> questions = [
       'd) 14',
     ],
   ),
-  
-  
 ];

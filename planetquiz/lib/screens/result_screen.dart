@@ -6,6 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 import 'package:planetquiz/models/questions.dart';
 import 'package:planetquiz/screens/first_screen.dart';
+import 'package:planetquiz/widgets/win_widget.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.score});
@@ -34,10 +35,11 @@ class _ResultScreenState extends State<ResultScreen>
     );
 
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.fastOutSlowIn),
+      CurvedAnimation(
+          parent: _animationController, curve: Curves.fastOutSlowIn),
     )..addListener(() {
-      setState(() {});
-    });
+        setState(() {});
+      });
 
     _animationController.forward();
 
@@ -72,7 +74,8 @@ class _ResultScreenState extends State<ResultScreen>
 
   Future<void> saveDiscountCodeToRealtimeDatabase(String code) async {
     final dbRef = FirebaseDatabase.instance.ref();
-    String formattedDate = DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.now());
+    String formattedDate =
+        DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.now());
     try {
       await dbRef.child('Kody zniżkowe QUIZ').push().set({
         'Kod Zniżkowy': code,
@@ -96,71 +99,144 @@ class _ResultScreenState extends State<ResultScreen>
               fit: BoxFit.cover,
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Stack(
             children: [
-              const Text(
-                'Twój Wynik:',
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
-              ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    height: 200,
-                    width: 200,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 10,
-                      value: _animation.value * widget.score / questions.length,
-                      color: Colors.green,
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        widget.score.toString(),
-                        style: const TextStyle(fontSize: 75),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        '${(widget.score / questions.length * 100).round()}%',
-                        style: const TextStyle(fontSize: 25),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              AnimatedOpacity(
-                opacity: opacityLevel,
-                duration: const Duration(seconds: 2),
-                child: Center(
-                  child: showDiscountCode
-                      ? Text(
-                        'GRATULACJE!\n Twój kod zniżkowy to:\n$discountCode',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-                      ): Text(
-                        'Niestety nie udało ci się',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-                      ),
+              Positioned(
+                top: 40,
+                left: 30,
+                right: 30,
+                child: const Text(
+                  'Twój Wynik:',
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              if (widget.score >= 8)
-                Image.asset('assets/animations/Win.gif',
-                    width: 200, height: 200),
-              if (widget.score < 8)
-                Image.asset('assets/animations/Loss.gif',
-                    width: 150, height: 150),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: ElevatedButton(
-                  onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const FirstScreen()),
-                    (Route<dynamic> route) => false,
+              Positioned(
+                top: 100,
+                left: 50,
+                right: 50,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      height: 300,
+                      width: 300,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 10,
+                        value:
+                            _animation.value * widget.score / questions.length,
+                        color: Colors.green,
+                        backgroundColor: Colors.white,
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          widget.score.toString(),
+                          style: const TextStyle(fontSize: 75),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          '${(widget.score / questions.length * 100).round()}%',
+                          style: const TextStyle(fontSize: 25),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 450,
+                left: 30,
+                right: 30,
+                child: AnimatedOpacity(
+                  opacity: opacityLevel,
+                  duration: const Duration(seconds: 2),
+                  child: Center(
+                    child: showDiscountCode
+                        ? Text(
+                            'GRATULACJE!\n Twój kod zniżkowy to:\n$discountCode',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 36, fontWeight: FontWeight.bold),
+                          )
+                        : Text(
+                            'Niestety nie udało ci się',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 21, fontWeight: FontWeight.bold),
+                          ),
                   ),
-                  child: const Text('Spróbuj Ponownie'),
+                ),
+              ),
+              Positioned(
+                top: 600,
+                left: 30,
+                right: 30,
+                child: widget.score >= 8
+                    ? Image.asset('assets/animations/Win.gif',
+                        width: 200, height: 200)
+                    : Image.asset('assets/animations/Loss.gif',
+                        width: 150, height: 150),
+              ),
+              Positioned(
+                bottom: 200,
+                top: 800,
+                left: 70,
+                right: 70,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: ElevatedButton.icon(
+                    icon: Icon(Icons
+                        .wine_bar), // Ikona, tutaj używam ikony wina dla przykładu
+                    label: const Text('Pokaż kod zniżkowy!'),
+                    onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) =>
+                          WinWidget(discountCode: discountCode),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.purple, // Kolor tła przycisku
+                      elevation: 10, // Wysokość cienia
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(30) // Zaokrąglenie rogów
+                          ),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10), // Padding wewnętrzny
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 100,
+                top: 900,
+                left: 70,
+                right: 70,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: ElevatedButton.icon(
+                    icon: Icon(Icons.refresh), // Dodanie ikony
+                    label: const Text('Spróbuj Ponownie'),
+                    onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const FirstScreen()),
+                      (Route<dynamic> route) => false,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Color.fromRGBO(
+                          106, 6, 199, 1), // Kolor tekstu i ikony
+                      elevation: 10, // Wysokość cienia
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(30) // Zaokrąglenie rogów
+                          ),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10), // Padding wewnętrzny
+                    ),
+                  ),
                 ),
               ),
             ],
