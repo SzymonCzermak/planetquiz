@@ -42,4 +42,5 @@ flutter:
     - assets/sounds/
     - assets/animations/Loss.gif
     - assets/animations/Win.gif
+    - assets/animations/Talon.gif
 

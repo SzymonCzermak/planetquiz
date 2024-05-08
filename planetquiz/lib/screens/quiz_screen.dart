@@ -68,7 +68,11 @@ class _QuizScreenState extends State<QuizScreen> {
       playSound('assets/sounds/quiz_end.mp3');
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => ResultScreen(score: score),
+          builder: (_) => ResultScreen(
+            score: score,
+            userRole: widget.userRole,
+            userRoleIcon: widget.userRoleIcon,
+          ),
         ),
       );
     }

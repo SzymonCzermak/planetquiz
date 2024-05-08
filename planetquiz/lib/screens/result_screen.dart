@@ -9,9 +9,15 @@ import 'package:planetquiz/screens/first_screen.dart';
 import 'package:planetquiz/widgets/win_widget.dart';
 
 class ResultScreen extends StatefulWidget {
-  const ResultScreen({super.key, required this.score});
+  const ResultScreen({
+    super.key,
+    required this.score,
+    required this.userRole,
+    required this.userRoleIcon,
+  });
   final int score;
-
+  final String userRole;
+  final IconData userRoleIcon;
   @override
   _ResultScreenState createState() => _ResultScreenState();
 }
@@ -123,8 +129,7 @@ class _ResultScreenState extends State<ResultScreen>
                       width: 300,
                       child: CircularProgressIndicator(
                         strokeWidth: 10,
-                        value:
-                            _animation.value * widget.score / questions.length,
+                        value: _animation.value * widget.score / 10,
                         color: Colors.green,
                         backgroundColor: Colors.white,
                       ),
@@ -137,7 +142,7 @@ class _ResultScreenState extends State<ResultScreen>
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          '${(widget.score / questions.length * 100).round()}%',
+                          '${(widget.score / 10 * 100).round()}%',
                           style: const TextStyle(fontSize: 25),
                         ),
                       ],
@@ -155,13 +160,13 @@ class _ResultScreenState extends State<ResultScreen>
                   child: Center(
                     child: showDiscountCode
                         ? Text(
-                            'GRATULACJE!\n Twój kod zniżkowy to:\n$discountCode',
+                            '',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 fontSize: 36, fontWeight: FontWeight.bold),
                           )
                         : Text(
-                            'Niestety nie udało ci się',
+                            '',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 fontSize: 21, fontWeight: FontWeight.bold),
@@ -192,8 +197,11 @@ class _ResultScreenState extends State<ResultScreen>
                     label: const Text('Pokaż kod zniżkowy!'),
                     onPressed: () => showDialog(
                       context: context,
-                      builder: (context) =>
-                          WinWidget(discountCode: discountCode),
+                      builder: (context) => WinWidget(
+                        discountCode: discountCode,
+                        userRole: widget.userRole,
+                        userRoleIcon: widget.userRoleIcon,
+                      ),
                     ),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
