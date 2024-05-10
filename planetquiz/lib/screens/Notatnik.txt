@@ -1,2 +1,11 @@
 
                   Color(0xFFF6E00FF), Color(0xFFFFD531F)].
+"------EKRAN STARTOWY-----\n"
+          "1.Kliknij na pasek 'Wybierz swoją rolę'.\n"
+          "2.Wybierz nazwe która jest najbardziej zgodna z tobą!\n"
+          "3.Kliknij przycisk 'START'.\n"
+          "\n"
+          "----QUIZ ZASADY------\n"
+          "1.Przeczytaj pytanie oraz odpowiedzi.\n"
+          "2.Wybierz jedną z nich i kliknij 'Następna'\n"
+          "3.Kontynuuj, aż poznasz wyniki quizu.\n",

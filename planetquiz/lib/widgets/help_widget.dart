@@ -36,7 +36,7 @@ void showHelpOverlay(BuildContext context) {
               "1. Przeczytaj pytanie oraz odpowiedzi.\n"
               "2. Wybierz jedną z nich i kliknij 'Następna'\n"
               "3. Kontynuuj, aż poznasz wyniki quizu.\n\n"
-              "Jeśli zdobędziesz conajmniej 8 punktów otrzymasz zniżkę na gadżety!'\n\n"
+              "Jeśli zdobędziesz conajmniej 8 punktów otrzymasz zniżkę na gadżety!\n\n"
               "POWODZENIA!",
               textStyle: TextStyle(fontSize: 22.0, color: Colors.white),
               speed: Duration(milliseconds: 30),
