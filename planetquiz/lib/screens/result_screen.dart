@@ -126,8 +126,8 @@ Widget build(BuildContext context) {
                 alignment: Alignment.center,
                 children: [
                   SizedBox(
-                    height: 300,
-                    width: 300,
+                    height:275,
+                    width: 275,
                     child: CircularProgressIndicator(
                       strokeWidth: 10,
                       value: _animation.value * widget.score / 10,
@@ -144,7 +144,7 @@ Widget build(BuildContext context) {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        '${(widget.score / 10 * 100).round()}%',
+                        '${(widget.score / 10 * 100).round()}',
                         style: const TextStyle(fontSize: 25),
                       ),
                     ],
@@ -181,16 +181,15 @@ Widget build(BuildContext context) {
               left: 30,
               right: 30,
               child: widget.score >= 8
-                  ? Image.asset('assets/animations/Win.gif',
+                  ? Image.asset('assets/animations/RobotkaWin.gif',
                       width: 200, height: 200)
-                  : Image.asset('assets/animations/Loss.gif',
-                      width: 150, height: 150),
+                  : Image.asset('assets/animations/RobotkaWin.gif',
+                      width: 200, height: 200),
             ),
-
             if (widget.score >= 8) 
               Positioned(
-  bottom: 450,
-  top: 550,
+  bottom: 500,
+  top: 500,
   left: 150,
   right: 150,
   child: Padding(
@@ -253,10 +252,10 @@ Widget build(BuildContext context) {
 
             else // Else clause if the score is less than 8
               Positioned(
-                bottom: 420,
-                top: 570,
-                left: 150,
-                right: 150,
+                bottom: 500,
+  top: 500,
+  left: 150,
+  right: 150,
                 child: Padding(
   padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 1),
   child: Container(

@@ -43,4 +43,9 @@ flutter:
     - assets/animations/Loss.gif
     - assets/animations/Win.gif
     - assets/animations/Talon.gif
-
+    - assets/sounds/Good.mp3
+    - assets/sounds/Wrong.mp3
+    - assets/animations/Robotka.gif
+    - assets/zdjQuiz/k7.jpg
+    - assets/zdjQuiz/k1.jpg
+    - assets/animations/RobotkaWin.gif

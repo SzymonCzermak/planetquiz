@@ -39,7 +39,7 @@ void showHelpOverlay(BuildContext context) {
               "Jeśli zdobędziesz conajmniej 8 punktów otrzymasz zniżkę na gadżety!\n\n"
               "POWODZENIA!",
               textStyle: TextStyle(fontSize: 22.0, color: Colors.white),
-              speed: Duration(milliseconds: 30),
+              speed: Duration(milliseconds: 15),
               textAlign: TextAlign.center, // Dodane wyrównanie do środka
             ),
           ],

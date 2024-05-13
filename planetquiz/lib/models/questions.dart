@@ -85,7 +85,7 @@ const List<Question> questions = [
     ],
   ),
   Question(
-    question: 'Do czego słuzy studio ze zdjęcia?(k1)',
+    question: 'Do czego słuzy studio ze zdjęcia?',
     correctAnswerIndex: 2,
     options: [
       'a) Do nagrywania foleyów',
@@ -93,9 +93,10 @@ const List<Question> questions = [
       'c) Do nagrywania muzyki',
       'd) Do nagrywania układów tanecznych',
     ],
+    imageUrl: 'assets/zdjQuiz/k1.jpg',
   ),
   Question(
-    question: 'Czego obrazek widzisz?(k7)',
+    question: 'Czego obrazek widzisz?',
     correctAnswerIndex: 0,
     options: [
       'a) Studio postprodukcji dzwięku',
@@ -103,7 +104,7 @@ const List<Question> questions = [
       'c) Sala konferencyjna',
       'd) Sala pokazowa',
     ],
-    imageUrl: 'assets/ping.jpg',
+    imageUrl: 'assets/zdjQuiz/k7.jpg',
   ),
   Question(
     question: 'Co to jest broń butaforska?',

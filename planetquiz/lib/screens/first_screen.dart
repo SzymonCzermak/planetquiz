@@ -225,16 +225,16 @@ class _FirstScreenState extends State<FirstScreen> {
 
             ),
           ),
-          // Positioned(
-          //   top: 700, // Zmień wartości top, left, right zgodnie z potrzebami layoutu
-          //   left: 100,
-          //   child: Lottie.asset(
-          //     'assets/animations/Robot.json',  // Ścieżka do twojego pliku Lottie
-          //     width: 300,  // Szerokość animacji
-          //     height: 250,  // Wysokość animacji
-          //     fit: BoxFit.fill,  // Dopasowanie animacji
-          //   ),
-          // ),
+          Positioned(
+  top:  700, // Możesz zmienić wartości top, left, right zgodnie z potrzebami layoutu
+  left: 1,
+  child: Image(
+    image: AssetImage('assets/animations/Robotka.gif'), // Ścieżka do twojego pliku
+    width: 375, // Szerokość obrazka
+    height: 375, // Wysokość obrazka// Dopasowanie obrazka
+  ),
+),
+
         ],
       ),
     ),
