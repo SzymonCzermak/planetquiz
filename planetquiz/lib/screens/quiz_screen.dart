@@ -115,7 +115,7 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
             Positioned(
               right: 30,
-              top: 50,
+              top: 30,
               child: IconButton(
                 icon: Icon(Icons.help_outline, color: Colors.white),
                 iconSize: 50,

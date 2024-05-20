@@ -21,6 +21,10 @@ dependencies:
   gif: ^2.3.0
   animated_text_kit: ^4.2.2
   flutter_animated_button: ^2.0.3
+  buttons_flutter: ^0.0.2+1
+  slider_button: ^2.1.0
+  timer_button: ^2.1.1
+  dynamic_fonts: ^2.2.1
 
 dev_dependencies:
   flutter_test:
@@ -49,3 +53,10 @@ flutter:
     - assets/zdjQuiz/k7.jpg
     - assets/zdjQuiz/k1.jpg
     - assets/animations/RobotkaWin.gif
+  fonts:
+    - family: SpaceMono
+      fonts:
+        - asset: assets/fonts/SpaceMono-Regular.ttf
+    - family: BungeeSpice
+      fonts:
+        - asset: assets/fonts/BungeeSpice-Regular.ttf

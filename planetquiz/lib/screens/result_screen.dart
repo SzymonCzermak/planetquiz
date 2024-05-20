@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:planetquiz/models/questions.dart';
 import 'package:planetquiz/screens/first_screen.dart';
 import 'package:planetquiz/widgets/win_widget.dart';
+import 'package:timer_button/timer_button.dart';
+import 'package:planetquiz/styles.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({
@@ -315,34 +317,29 @@ Widget build(BuildContext context) {
           ),
         ],
       ),
-      child: ElevatedButton.icon(
-        icon: Icon(Icons.refresh),
-        label: const Text(
-          'Spróbuj ponownie',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w300,
-          ),
-        ),
-        onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+      child: Container(
+  decoration: BoxDecoration(
+    // Twoje dekoracje tutaj
+  ),
+  child: TimerButton(
+                  label: "Spróbuj Ponownie",
+                  timeOutInSeconds: 5,
+                  onPressed: () {
+                    Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const FirstScreen()),
           (Route<dynamic> route) => false,
-        ),
-        style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.white,
-          backgroundColor: Color.fromRGBO(106, 6, 199, 1),
-          elevation: 0, // Removed elevation since custom shadow is used
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          padding: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 20
-          ),
-          shadowColor: Colors.transparent, // No additional shadow from the button itself
-          side: BorderSide(color: Color.fromARGB(137, 83, 6, 102), width: 2), // Maintaining the visual outline
-        ),
-      ),
+        );
+                  },
+                  buttonType: ButtonType.textButton,
+                  disabledColor: Color.fromARGB(148, 60, 1, 116),
+                  color: violet,
+                  activeTextStyle: const TextStyle(color:gold,fontSize:26,fontFamily: 'BungeeSpice' ),
+                  disabledTextStyle: const TextStyle(color: Colors.red,fontSize:25),
+                ),
+),
+
+
+
     ),
   ),
 ),

@@ -9,3 +9,5 @@
           "1.Przeczytaj pytanie oraz odpowiedzi.\n"
           "2.Wybierz jedną z nich i kliknij 'Następna'\n"
           "3.Kontynuuj, aż poznasz wyniki quizu.\n",
+
+          showHelpOverlay(context)
