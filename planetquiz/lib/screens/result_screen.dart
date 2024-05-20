@@ -319,23 +319,34 @@ Widget build(BuildContext context) {
       ),
       child: Container(
   decoration: BoxDecoration(
-    // Twoje dekoracje tutaj
+    border: Border.all(
+      color: orange, // Kolor ramki
+      width: 4.0, // Szerokość ramki
+    ),
+    borderRadius: BorderRadius.circular(64.0), // Promień zaokrąglenia ramki (opcjonalnie)
   ),
   child: TimerButton(
-                  label: "Spróbuj Ponownie",
-                  timeOutInSeconds: 5,
-                  onPressed: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const FirstScreen()),
-          (Route<dynamic> route) => false,
-        );
-                  },
-                  buttonType: ButtonType.textButton,
-                  disabledColor: Color.fromARGB(148, 60, 1, 116),
-                  color: violet,
-                  activeTextStyle: const TextStyle(color:gold,fontSize:26,fontFamily: 'BungeeSpice' ),
-                  disabledTextStyle: const TextStyle(color: Colors.red,fontSize:25),
-                ),
+    label: "Spróbuj Ponownie",
+    timeOutInSeconds: 5,
+    onPressed: () {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const FirstScreen()),
+        (Route<dynamic> route) => false,
+      );
+    },
+    buttonType: ButtonType.textButton,
+    disabledColor: Color.fromARGB(148, 60, 1, 116),
+    color: violet,
+    activeTextStyle: const TextStyle(
+      color: gold,
+      fontSize: 24,
+      fontFamily: 'BungeeSpice',
+    ),
+    disabledTextStyle: const TextStyle(
+      color: red,
+      fontSize: 14,
+    ),
+  ),
 ),
 
 

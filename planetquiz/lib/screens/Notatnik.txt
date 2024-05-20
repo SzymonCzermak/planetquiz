@@ -11,3 +11,9 @@
           "3.Kontynuuj, aż poznasz wyniki quizu.\n",
 
           showHelpOverlay(context)
+
+
+          Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const FirstScreen()),
+          (Route<dynamic> route) => false,
+        ),

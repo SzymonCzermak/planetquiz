@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:planetquiz/styles.dart';
 
 class AnswerCard extends StatelessWidget {
   const AnswerCard({
@@ -31,7 +32,7 @@ class AnswerCard extends StatelessWidget {
               height: 70,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Color.fromARGB(115, 84, 35, 199),
+                color: violet,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: isCorrectAnswer
@@ -66,7 +67,7 @@ class AnswerCard extends StatelessWidget {
               height: 70,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Color.fromARGB(108, 111, 0, 255),
+                color: violet2,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: Colors.white24,

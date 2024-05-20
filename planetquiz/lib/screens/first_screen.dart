@@ -3,6 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:planetquiz/screens/quiz_screen.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:planetquiz/styles.dart';
 import 'package:planetquiz/widgets/help_widget.dart';
 import 'package:buttons_flutter/buttons_flutter.dart';
 
@@ -73,7 +74,7 @@ class _FirstScreenState extends State<FirstScreen> {
   void _startQuiz() {
     if (_selectedName != null) {
       playSound();
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(Duration(seconds: 0), () {
         Navigator.of(context).push(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) => QuizScreen(
@@ -133,7 +134,7 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
             ),
             Positioned(
-              top: 425, // Adjust as needed to center the elements vertically
+              top: 450, // Adjust as needed to center the elements vertically
               left: 50, // Adjust as needed to center the elements horizontally
               right: 50,
               child: Column(
@@ -173,6 +174,22 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                   SizedBox(height: 30),
                   Container(
+  child: Container(
+  decoration: BoxDecoration(
+    border: Border.all(
+      color: orange, // This border color can be adjusted to match your design
+      width: 4.0, // Border thickness
+    ),
+    borderRadius: BorderRadius.circular(15), // Matches the radius of the SliderButton
+    gradient: LinearGradient(
+      begin: Alignment.bottomRight,
+      end: Alignment.topRight,
+      colors: [
+        violet, // Starting color of the gradient
+        Color.fromARGB(255, 252, 252, 252), // Ending color of the gradient, change as needed
+      ],
+    ),
+  ),
   child: SizedBox(
     child: SliderButton(
       action: () async{
@@ -180,33 +197,37 @@ class _FirstScreenState extends State<FirstScreen> {
         return true; 
       },
 
-      ///Put label over here
+      /// Put label over here
       label: Text(
         "Przesuń By Rozpocząć!",
         style: TextStyle(
-            color: Color.fromARGB(255, 190, 118, 8),
-            fontWeight: FontWeight.w500,
-            fontSize: 28),
+            color: Colors.white, // Changed text color for better visibility
+            fontWeight: FontWeight.w600,
+            fontSize: 22,
+            fontFamily: 'BungeeSpice'),
       ),
       icon: Center(
           child: Icon(
-        Icons.power_settings_new,
-        color: Colors.white,
-        size: 40.0,
+        Icons.start,
+        color: orange, // Ensure 'orange' is defined in your palette
+        size: 60.0,
         semanticLabel: 'Text to announce in accessibility modes',
       )),
 
-      ///Change All the color and size from here.
+      /// Change all the color and size from here.
       height: 100,
       width: 450,
       radius: 10,
-      buttonColor: Color.fromARGB(255, 163, 7, 224),
-      backgroundColor: Color.fromARGB(255, 110, 110, 110),
-      highlightedColor: Colors.white,
-      baseColor: Color.fromARGB(255, 37, 4, 129),
-    )
+      buttonColor: grey, // Assuming 'grey' is also defined in your palette
+      backgroundColor: violet, // This will be overridden by the outer container's gradient
+      highlightedColor: const Color.fromARGB(255, 180, 30, 30),
+      baseColor: grey,
+    ),
   ),
 )
+
+)
+
 
                 ],
               ),
@@ -215,35 +236,38 @@ class _FirstScreenState extends State<FirstScreen> {
               bottom: 70,  // Position from the bottom of the Stack
               right: 50,   // Position from the right of the Stack
               child: SizedBox(
-                width: 175,
-                height: 80,
+                width: 200,
+                height: 100,
                 child: ElevatedButton(
                   onPressed: () => showHelpOverlay(context),
                   child: Row(
                     children: [
                       Text(
-                        '  Jak Grać  ',
+                        'Jak Grać ',
                         style: TextStyle(
-                          fontSize: 16, // Zwiększony rozmiar tekstu
-                          fontWeight: FontWeight.bold, // Pogrubienie tekstu
+                          color:violet,
+                          fontSize: 24, // Zwiększony rozmiar tekstu
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'BungeeSpice' // Pogrubienie tekstu
                         ),
                       ),
                       Icon(
-                        Icons.help,   // Nazwa ikony
-                        size: 30.0,   // Wielkość ikony w pikselach
+                        Icons.help_outline_sharp,   // Nazwa ikony
+                        size: 1.0,
+                        color: violet,   // Wielkość ikony w pikselach
                       ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-                    backgroundColor: Color.fromARGB(255, 9, 156, 31),
+                    backgroundColor: violet,
                     elevation: 10, // Dodanie cienia pod przycisku
                     shadowColor: Color.fromARGB(192, 185, 23, 177), // Kolor cienia
                     shape: RoundedRectangleBorder( // Dodanie ramki wokół przycisku
                       borderRadius: BorderRadius.circular(20), // Zaokrąglone rogi
                       side: BorderSide( // Dodanie ramki
-                        color: Color.fromARGB(190, 73, 10, 156), // Kolor ramki
-                        width: 2, // Szerokość ramki
+                        color: orange, // Kolor ramki
+                        width: 4, // Szerokość ramki
                       ),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Dodatkowy padding dla większego przycisku
