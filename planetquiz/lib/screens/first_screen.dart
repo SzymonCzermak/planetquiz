@@ -11,34 +11,12 @@ final List<String> _nameOptions = [
   'KinoManiak',
   'Magik Obiektywu',
   'Malarka Scen',
-  'Mistrz Reżyserii',
-  'Władca Tańca',
-  'Poeta Ekranu',
-  'Wirtuoz Scenariusza',
-  'Czarodziej Montażu',
-  'Architekt Opowieści',
-  'Kompozytor Nut',
-  'Operator Światła',
-  'Grafika Wizji',
-  'Animator Ruchu',
-  'Kreator Charakterów'
 ];
 
 final Map<String, IconData> _nameIcons = {
   'KinoManiak': Icons.movie,
   'Magik Obiektywu': Icons.camera_alt,
   'Malarka Scen': Icons.brush,
-  'Mistrz Reżyserii': Icons.camera_roll,
-  'Władca Tańca': Icons.directions_run,
-  'Poeta Ekranu': Icons.create,
-  'Wirtuoz Scenariusza': Icons.assignment,
-  'Czarodziej Montażu': Icons.edit,
-  'Architekt Opowieści': Icons.build,
-  'Kompozytor Nut': Icons.music_note,
-  'Operator Światła': Icons.highlight,
-  'Grafika Wizji': Icons.photo_camera,
-  'Animator Ruchu': Icons.motion_photos_on,
-  'Kreator Charakterów': Icons.face
 };
 
 String? _selectedName; // Zmienna na wybraną opcję

@@ -131,12 +131,22 @@ class WinWidget extends StatelessWidget {
         ],
       ),
       actions: <Widget>[
-        TextButton(
-          child: const Text('Powrót'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        Center(
+    child: TextButton(
+      child: Text(
+        'Powrót',
+        style: TextStyle(
+          fontFamily: 'BungeeSpice',  // Nazwa czcionki
+          fontSize: 22.0,             // Rozmiar czcionki
+          fontWeight: FontWeight.bold,// Grubość czcionki
+          color: Colors.blue,         // Kolor tekstu
         ),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    ),
+  ),
       ],
     );
   }

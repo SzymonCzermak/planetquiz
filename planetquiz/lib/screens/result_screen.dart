@@ -116,7 +116,7 @@ Widget build(BuildContext context) {
               right: 30,
               child: const Text(
                 'Twój Wynik:',
-                style: TextStyle(fontSize: 55, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 60, fontWeight: FontWeight.w500),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -179,7 +179,7 @@ Widget build(BuildContext context) {
               ),
             ),
             Positioned(
-              top: 700,
+              top: 550,
               left: 30,
               right: 30,
               child: widget.score >= 8
@@ -190,8 +190,8 @@ Widget build(BuildContext context) {
             ),
             if (widget.score >= 8) 
               Positioned(
-  bottom: 500,
-  top: 500,
+  bottom: 250,
+  top: 800,
   left: 150,
   right: 150,
   child: Padding(
@@ -219,7 +219,7 @@ Widget build(BuildContext context) {
         ),
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: Colors.purple,
+          backgroundColor: violet2,
           elevation: 0, // Remove elevation since we're using a custom shadow
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
@@ -229,7 +229,7 @@ Widget build(BuildContext context) {
             vertical: 10,
           ),
           shadowColor: Colors.transparent, // Ensuring no shadow from the button itself
-          side: BorderSide(color: Color.fromARGB(137, 155, 9, 99), width: 2), // Adding a subtle border for visual distinction
+          side: BorderSide(color: orange, width: 4), // Adding a subtle border for visual distinction
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -254,8 +254,8 @@ Widget build(BuildContext context) {
 
             else // Else clause if the score is less than 8
               Positioned(
-                bottom: 500,
-  top: 500,
+                bottom: 275,
+  top: 775,
   left: 150,
   right: 150,
                 child: Padding(
@@ -272,8 +272,8 @@ Widget build(BuildContext context) {
       boxShadow: [ // Optional shadow for aesthetic depth
         BoxShadow(
           color: Color.fromARGB(132, 241, 0, 0).withOpacity(0.5),
-          spreadRadius: 30,
-          blurRadius: 40,
+          spreadRadius: 15,
+          blurRadius: 20,
           offset: Offset(0, 5), // Changes position of shadow
         ),
       ],
@@ -281,7 +281,7 @@ Widget build(BuildContext context) {
     child: AnimatedTextKit(
       animatedTexts: [
         TyperAnimatedText(
-          "Niestety nie udało ci się ;c\n Pamiętaj, że zawsze możesz spróbować ponownie!",
+          "Niestety nie udało sie, Pamiętaj, że zawsze możesz spróbować ponownie!",
           textStyle: TextStyle(fontSize: 16.0, color: Colors.white),
           speed: Duration(milliseconds: 80),
           textAlign: TextAlign.center,

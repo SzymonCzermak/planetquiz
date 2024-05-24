@@ -157,3 +157,41 @@ const List<Question> questions = [
     ],
   ),
 ];
+const List<Question> montazQuestions = [
+  Question(
+    question: 'Ile jest wszystkich kopuł w Alvernia Planet?',
+    correctAnswerIndex: 2,
+    options: [
+      'a) 6',
+      'b) 9',
+      'c) 13',
+      'd) 14',
+    ],
+  ),
+];
+
+const List<Question> scenariuszQuestions = [
+  Question(
+    question: 'Ile jest wszystkich kopuł w Alvernia Planet?',
+    correctAnswerIndex: 2,
+    options: [
+      'a) 6',
+      'b) 9',
+      'c) 13',
+      'd) 14',
+    ],
+  ),
+];
+
+const List<Question> oswietlenieQuestions = [
+  Question(
+    question: 'Ile jest wszystkich kopuł w Alvernia Planet?',
+    correctAnswerIndex: 2,
+    options: [
+      'a) 6',
+      'b) 9',
+      'c) 13',
+      'd) 14',
+    ],
+  ),
+];
