@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:planetquiz/models/questions.dart';
-import 'package:planetquiz/screens/result_screen.dart';
+import 'package:planetquiz/screens/RoleSpecificQuizScreen.dart';
 import 'package:planetquiz/widgets/answer_card.dart';
 import 'package:planetquiz/widgets/help_widget.dart';
 import 'package:planetquiz/widgets/next_button.dart';
@@ -68,7 +68,7 @@ class _QuizScreenState extends State<QuizScreen> {
       playSound('assets/sounds/quiz_end.mp3');
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => ResultScreen(
+          builder: (_) => RoleSpecificQuizScreen(
             score: score,
             userRole: widget.userRole,
             userRoleIcon: widget.userRoleIcon,
@@ -140,12 +140,11 @@ class _QuizScreenState extends State<QuizScreen> {
                   ),
                   if (question.imageUrl != null) // Conditional image display
                     Container(
-                      width: 300, // Zdefiniowana szerokość
-                      height: 200, // Zdefiniowana wysokość
+                      width: 300,
+                      height: 200,
                       child: Image.asset(
                         question.imageUrl!,
-                        fit: BoxFit
-                            .contain, // Zachowaj proporcje, nie przycinając obrazu
+                        fit: BoxFit.contain, // Keep proportions without cropping
                       ),
                     ),
                   ListView.builder(
@@ -167,13 +166,13 @@ class _QuizScreenState extends State<QuizScreen> {
                   isLastQuestion
                       ? RectangularButton(
                           onPressed: () => goToNextQuestion(),
-                          label: 'Zakończ',
+                          label: 'Finish',
                         )
                       : RectangularButton(
                           onPressed: selectedAnswerIndex != null
                               ? () => goToNextQuestion()
                               : null,
-                          label: 'Następny',
+                          label: 'Next',
                         ),
                 ],
               ),

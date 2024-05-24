@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:planetquiz/screens/quiz_screen.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:planetquiz/styles.dart';
 import 'package:planetquiz/widgets/help_widget.dart';

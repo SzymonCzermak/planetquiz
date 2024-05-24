@@ -10,6 +10,11 @@ class AnswerCard extends StatelessWidget {
     required this.currentIndex,
     required this.correctAnswerIndex,
     required this.selectedAnswerIndex,
+    this.backgroundColor,
+    this.selectedBackgroundColor,
+    this.correctBorderColor,
+    this.wrongBorderColor,
+    this.defaultBorderColor,
   });
 
   final String question;
@@ -18,10 +23,17 @@ class AnswerCard extends StatelessWidget {
   final int? selectedAnswerIndex;
   final int currentIndex;
 
+  final Color? backgroundColor;
+  final Color? selectedBackgroundColor;
+  final Color? correctBorderColor;
+  final Color? wrongBorderColor;
+  final Color? defaultBorderColor;
+
   @override
   Widget build(BuildContext context) {
     bool isCorrectAnswer = currentIndex == correctAnswerIndex;
     bool isWrongAnswer = !isCorrectAnswer && isSelected;
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 10.0,
@@ -32,14 +44,16 @@ class AnswerCard extends StatelessWidget {
               height: 70,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: violet,
+                color: isSelected
+                    ? (selectedBackgroundColor ?? violet)
+                    : (backgroundColor ?? violet2),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: isCorrectAnswer
-                      ? Colors.green
+                      ? (correctBorderColor ?? Colors.green)
                       : isWrongAnswer
-                          ? Colors.red
-                          : Colors.white24,
+                          ? (wrongBorderColor ?? Colors.red)
+                          : (defaultBorderColor ?? Colors.white24),
                 ),
               ),
               child: Row(
@@ -49,7 +63,7 @@ class AnswerCard extends StatelessWidget {
                       question,
                       style: const TextStyle(
                         fontSize: 18,
-                        fontWeight:FontWeight.bold
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -67,10 +81,10 @@ class AnswerCard extends StatelessWidget {
               height: 70,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: violet2,
+                color: backgroundColor ?? violet2,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: Colors.white24,
+                  color: defaultBorderColor ?? Colors.white24,
                 ),
               ),
               child: Row(

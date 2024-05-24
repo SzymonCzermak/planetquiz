@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:planetquiz/models/question.dart';
 
 const List<Question> questions = [
@@ -157,41 +155,105 @@ const List<Question> questions = [
     ],
   ),
 ];
-const List<Question> montazQuestions = [
-  Question(
-    question: 'Ile jest wszystkich kopuł w Alvernia Planet?',
-    correctAnswerIndex: 2,
-    options: [
-      'a) 6',
-      'b) 9',
-      'c) 13',
-      'd) 14',
-    ],
-  ),
-];
 
-const List<Question> scenariuszQuestions = [
-  Question(
-    question: 'Ile jest wszystkich kopuł w Alvernia Planet?',
-    correctAnswerIndex: 2,
-    options: [
-      'a) 6',
-      'b) 9',
-      'c) 13',
-      'd) 14',
-    ],
-  ),
-];
 
-const List<Question> oswietlenieQuestions = [
-  Question(
-    question: 'Ile jest wszystkich kopuł w Alvernia Planet?',
-    correctAnswerIndex: 2,
-    options: [
-      'a) 6',
-      'b) 9',
-      'c) 13',
-      'd) 14',
-    ],
-  ),
-];
+
+Map<String, List<Question>> roleQuestions = {
+  'KinoManiak': [
+    Question(
+      question: 'Który film zdobył Oscara za najlepszy film w 1994 roku?',
+      correctAnswerIndex: 0,
+      options: [
+        'a) Forrest Gump',
+        'b) Pulp Fiction',
+        'c) The Shawshank Redemption',
+        'd) Quiz Show',
+      ],
+    ),
+    Question(
+      question: 'Kto zagrał rolę Jokera w filmie "The Dark Knight" (2008)?',
+      correctAnswerIndex: 2,
+      options: [
+        'a) Jack Nicholson',
+        'b) Jared Leto',
+        'c) Heath Ledger',
+        'd) Joaquin Phoenix',
+      ],
+    ),
+    Question(
+      question: 'Który reżyser jest znany z takich filmów jak "Inception", "Interstellar" i "Dunkirk"?',
+      correctAnswerIndex: 1,
+      options: [
+        'a) Steven Spielberg',
+        'b) Christopher Nolan',
+        'c) Quentin Tarantino',
+        'd) Martin Scorsese',
+      ],
+    ),
+  ],
+  'Magik Obiektywu': [
+    Question(
+      question: 'Który obiektyw jest idealny do fotografii portretowej?',
+      correctAnswerIndex: 1,
+      options: [
+        'a) Szerokokątny 16mm',
+        'b) Stałoogniskowy 85mm',
+        'c) Teleobiektyw 200mm',
+        'd) Makro 100mm',
+      ],
+    ),
+    Question(
+      question: 'Która technika fotografii polega na długim czasie naświetlania?',
+      correctAnswerIndex: 0,
+      options: [
+        'a) Long exposure',
+        'b) HDR',
+        'c) Panorama',
+        'd) Bokeh',
+      ],
+    ),
+    Question(
+      question: 'Który z poniższych fotografów jest znany z fotografii wojennej?',
+      correctAnswerIndex: 3,
+      options: [
+        'a) Ansel Adams',
+        'b) Richard Avedon',
+        'c) Annie Leibovitz',
+        'd) Robert Capa',
+      ],
+    ),
+  ],
+  'Malarka Scen': [
+    Question(
+      question: 'Która technika malarska polega na nanoszeniu farby na suchą powierzchnię?',
+      correctAnswerIndex: 2,
+      options: [
+        'a) Akwarela',
+        'b) Fresk',
+        'c) Tempera',
+        'd) Enkaustyka',
+      ],
+    ),
+    Question(
+      question: 'Jak nazywa się sztuka malowania na mokrym tynku?',
+      correctAnswerIndex: 1,
+      options: [
+        'a) Impasto',
+        'b) Fresk',
+        'c) Grisaille',
+        'd) Pointylizm',
+      ],
+    ),
+    Question(
+      question: 'Która artystka jest znana z dużych kwiatowych obrazów i stylu modernistycznego?',
+      correctAnswerIndex: 3,
+      options: [
+        'a) Frida Kahlo',
+        'b) Yayoi Kusama',
+        'c) Mary Cassatt',
+        'd) Georgia O\'Keeffe',
+      ],
+    ),
+  ],
+};
+

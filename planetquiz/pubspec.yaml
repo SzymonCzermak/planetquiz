@@ -53,6 +53,8 @@ flutter:
     - assets/zdjQuiz/k7.jpg
     - assets/zdjQuiz/k1.jpg
     - assets/animations/RobotkaWin.gif
+    - assets/Tla/Dogrywka.gif
+    - assets/sounds/Dogrywka.mp3
   fonts:
     - family: SpaceMono
       fonts:
