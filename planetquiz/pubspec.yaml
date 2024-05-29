@@ -25,6 +25,7 @@ dependencies:
   slider_button: ^2.1.0
   timer_button: ^2.1.1
   dynamic_fonts: ^2.2.1
+  button_animations: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:

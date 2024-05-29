@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:planetquiz/screens/quiz_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:planetquiz/styles.dart';
+import 'package:planetquiz/styles.dart';
 import 'package:planetquiz/widgets/help_widget.dart';
-import 'package:buttons_flutter/buttons_flutter.dart';
+import 'package:button_animations/button_animations.dart';
+
+import '../styles.dart';
 
 final List<String> _nameOptions = [
   'KinoManiak',
@@ -82,12 +85,6 @@ class _FirstScreenState extends State<FirstScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var submitTextStyle = TextStyle(
-      fontSize: 48,
-      letterSpacing: 5,
-      color: const Color.fromARGB(255, 0, 0, 0),
-      fontWeight: FontWeight.w600,
-    );
 
     return Scaffold(
       body: Container(
@@ -120,24 +117,27 @@ class _FirstScreenState extends State<FirstScreen> {
                     width: 550.0,
                     child: DropdownButtonFormField<String>(
                       value: _selectedName,
-                      style: TextStyle(fontSize: 24.0),  // Zwiększ wielkość tekstu, jeśli potrzeba
+                      style: TextStyle(fontSize: 55.0),  // Zwiększ wielkość tekstu, jeśli potrzeba
                       decoration: InputDecoration(
-                        labelText: 'Wybierz swoją rolę',
-                        labelStyle: TextStyle(fontSize: 25.0),
+                        labelText: 'Wybierz swoją rolę (↓ kliknij poniżej ↓)',
+                        labelStyle: TextStyle(fontSize: 35.0),
                         contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 25.0),
                       ),
                       items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Row(
-                            children: <Widget>[
-                              Icon(_nameIcons[value], size: 24.0),
-                              SizedBox(width: 10),
-                              Text(
-                                value,
-                                style: TextStyle(fontSize: 24.0),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0), // Dodaj odstęp pionowy
+                            child: Row(
+                              children: <Widget>[
+                                Icon(_nameIcons[value], size: 32.0),
+                                SizedBox(width: 15),
+                                Text(
+                                  value,
+                                  style: TextStyle(fontSize: 37.0),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       }).toList(),
@@ -147,62 +147,40 @@ class _FirstScreenState extends State<FirstScreen> {
                         });
                       },
                     ),
+
                   ),
                   SizedBox(height: 30),
                   Container(
-  child: Container(
+                    width: 455,
   decoration: BoxDecoration(
     border: Border.all(
-      color: orange, // This border color can be adjusted to match your design
-      width: 4.0, // Border thickness
+      color: orange, // Kolor ramki
+      width: 4.0, // Szerokość ramki
     ),
-    borderRadius: BorderRadius.circular(15), // Matches the radius of the SliderButton
-    gradient: LinearGradient(
-      begin: Alignment.bottomRight,
-      end: Alignment.topRight,
-      colors: [
-        violet, // Starting color of the gradient
-        Color.fromARGB(255, 252, 252, 252), // Ending color of the gradient, change as needed
-      ],
-    ),
+    borderRadius: BorderRadius.circular(40.0), // Zaokrąglenie rogów ramki
   ),
-  child: SizedBox(
-    child: SliderButton(
-      action: () async{
-        _startQuiz();
-        return true; 
-      },
-
-      /// Put label over here
-      label: Text(
-        "Przesuń By Rozpocząć!",
-        style: TextStyle(
-            color: Colors.white, // Changed text color for better visibility
-            fontWeight: FontWeight.w600,
-            fontSize: 22,
-            fontFamily: 'BungeeSpice'),
+  child: AnimatedButton(
+    borderRadius: 40,
+    width: 450,
+    height: 100,
+    child: Text(
+      "START",
+      style: TextStyle(
+        fontSize: 50, // Wielkość tekstu
+        fontWeight: FontWeight.bold, // Grubość czcionki
+        color: gold, // Kolor tekstu 
       ),
-      icon: Center(
-          child: Icon(
-        Icons.start,
-        color: orange, // Ensure 'orange' is defined in your palette
-        size: 60.0,
-        semanticLabel: 'Text to announce in accessibility modes',
-      )),
-
-      /// Change all the color and size from here.
-      height: 100,
-      width: 450,
-      radius: 10,
-      buttonColor: grey, // Assuming 'grey' is also defined in your palette
-      backgroundColor: violet, // This will be overridden by the outer container's gradient
-      highlightedColor: const Color.fromARGB(255, 180, 30, 30),
-      baseColor: grey,
     ),
+    onTap: () {_startQuiz();},
+    isMultiColor: true,
+    colors: [
+      violet, violet
+    ],
   ),
 )
 
-)
+
+
 
 
                 ],
