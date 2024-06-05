@@ -33,7 +33,6 @@ class _RoleSpecificQuizScreenState extends State<RoleSpecificQuizScreen> {
     score = widget.score;  // Initialize score with the passed initial score
     questions = roleQuestions[widget.userRole] ?? [];
     questions.shuffle();
-    playSound('sounds/Dogrywka.mp3');
   }
 
   void playSound(String path) async {

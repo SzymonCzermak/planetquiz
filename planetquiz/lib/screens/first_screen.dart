@@ -1,24 +1,29 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:planetquiz/screens/quiz_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:planetquiz/styles.dart';
-import 'package:planetquiz/styles.dart';
 import 'package:planetquiz/widgets/help_widget.dart';
 import 'package:button_animations/button_animations.dart';
-
-import '../styles.dart';
+import 'package:planetquiz/widgets/role_info.dart';
+import 'package:planetquiz/widgets/social_media_bar.dart';
 
 final List<String> _nameOptions = [
   'KinoManiak',
   'Magik Obiektywu',
   'Malarka Scen',
+  'Dźwiękowiec',
+  'Scenograf',
 ];
 
 final Map<String, IconData> _nameIcons = {
   'KinoManiak': Icons.movie,
   'Magik Obiektywu': Icons.camera_alt,
   'Malarka Scen': Icons.brush,
+  'Dźwiękowiec': Icons.volume_up,
+  'Scenograf': Icons.theaters,
 };
+
 
 String? _selectedName; // Zmienna na wybraną opcję
 
@@ -107,7 +112,7 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
             ),
             Positioned(
-              top: 450, // Adjust as needed to center the elements vertically
+              top: 390, // Adjust as needed to center the elements vertically
               left: 50, // Adjust as needed to center the elements horizontally
               right: 50,
               child: Column(
@@ -116,128 +121,223 @@ class _FirstScreenState extends State<FirstScreen> {
                   SizedBox(
                     width: 550.0,
                     child: DropdownButtonFormField<String>(
-                      value: _selectedName,
-                      style: TextStyle(fontSize: 55.0),  // Zwiększ wielkość tekstu, jeśli potrzeba
-                      decoration: InputDecoration(
-                        labelText: 'Wybierz swoją rolę (↓ kliknij poniżej ↓)',
-                        labelStyle: TextStyle(fontSize: 35.0),
-                        contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 25.0),
-                      ),
-                      items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10.0), // Dodaj odstęp pionowy
-                            child: Row(
-                              children: <Widget>[
-                                Icon(_nameIcons[value], size: 32.0),
-                                SizedBox(width: 15),
-                                Text(
-                                  value,
-                                  style: TextStyle(fontSize: 37.0),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _selectedName = newValue;
-                        });
-                      },
+                    value: _selectedName,
+                    style: TextStyle(fontSize: 65.0),  // Zwiększ wielkość tekstu, jeśli potrzeba
+                    decoration: InputDecoration(
+                      labelText: 'Wybierz swoją rolę:',
+                      labelStyle: TextStyle(fontSize: 45.0,color: Colors.white),
+                      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
                     ),
+                    hint: Text(
+                      'Kliknij Tutaj aby wybrać role!',
+                      style: TextStyle(fontSize: 20.0,color: Colors.white70,fontWeight: FontWeight.bold),
+                    ),
+                    items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0), // Dodaj odstęp pionowy
+                          child: Row(
+                            children: <Widget>[
+                              Icon(_nameIcons[value], size: 32.0),
+                              SizedBox(width: 15),
+                              Text(
+                                value,
+                                style: TextStyle(fontSize: 37.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedName = newValue;
+                      });
+                    },
+                  ),
+
 
                   ),
                   SizedBox(height: 30),
                   Container(
                     width: 455,
-  decoration: BoxDecoration(
-    border: Border.all(
-      color: orange, // Kolor ramki
-      width: 4.0, // Szerokość ramki
-    ),
-    borderRadius: BorderRadius.circular(40.0), // Zaokrąglenie rogów ramki
-  ),
-  child: AnimatedButton(
-    borderRadius: 40,
-    width: 450,
-    height: 100,
-    child: Text(
-      "START",
-      style: TextStyle(
-        fontSize: 50, // Wielkość tekstu
-        fontWeight: FontWeight.bold, // Grubość czcionki
-        color: gold, // Kolor tekstu 
-      ),
-    ),
-    onTap: () {_startQuiz();},
-    isMultiColor: true,
-    colors: [
-      violet, violet
-    ],
-  ),
-)
-
-
-
-
-
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: orange, // Kolor ramki
+                        width: 4.0, // Szerokość ramki
+                      ),
+                      borderRadius: BorderRadius.circular(40.0), // Zaokrąglenie rogów ramki
+                    ),
+                    child: AnimatedButton(
+                      borderRadius: 40,
+                      width: 450,
+                      height: 100,
+                      child: Text(
+                        "START",
+                        style: TextStyle(
+                          fontFamily: 'BungeeSpice',
+                          fontSize: 50, // Wielkość tekstu
+                          fontWeight: FontWeight.bold, // Grubość czcionki
+                          color: gold, // Kolor tekstu 
+                        ),
+                      ),
+                      onTap: () {_startQuiz();},
+                      isMultiColor: true,
+                      colors: [
+                        violet, violet2
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
+
+
+
+
             Positioned(
-              bottom: 70,  // Position from the bottom of the Stack
-              right: 50,   // Position from the right of the Stack
+  bottom: 400,
+  right: 185,
+  child: SizedBox(
+    width: 300,
+    height: 75,
+    child: ElevatedButton(
+      onPressed: () => showHelpOverlay(context),
+      child: Text(
+        'Jak Grać?',
+        style: TextStyle(
+          color: Colors.white, // Kolor tekstu
+          fontSize: 24, // Zwiększony rozmiar tekstu
+          fontWeight: FontWeight.bold,
+          fontFamily: 'BungeeSpice', // Pogrubienie tekstu
+        ),
+      ),
+      style: ElevatedButton.styleFrom(
+        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: violet, // Używamy `Colors.purple` jako odpowiednik `violet`
+        elevation: 2, 
+        shadowColor: Color.fromARGB(192, 185, 23, 177), 
+        shape: RoundedRectangleBorder( 
+          borderRadius: BorderRadius.circular(30), 
+          side: BorderSide( 
+            color: orange, 
+            width: 4, 
+          ),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Dodatkowy padding dla większego przycisku
+      ),
+    ),
+  ),
+),
+
+            Positioned(
+              top: 750, 
+              left: 1,
+              child: Image(
+                image: AssetImage('assets/animations/Robotka.gif'),
+                width: 350, 
+                height: 350, 
+              ),
+            ),
+            Positioned(
+              bottom: 250,
+              right: 50,
+              child: Text(
+                "Zaobserwuj nas na: ",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32.0, // Tutaj ustawiamy rozmiar czcionki
+                ),
+              ),
+            ),
+
+            Positioned(
+              bottom: 192,
+              right: 60,
               child: SizedBox(
-                width: 200,
-                height: 100,
-                child: ElevatedButton(
-                  onPressed: () => showHelpOverlay(context),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Jak Grać ',
-                        style: TextStyle(
-                          color:violet,
-                          fontSize: 24, // Zwiększony rozmiar tekstu
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'BungeeSpice' // Pogrubienie tekstu
-                        ),
+                    width: 250.0,
+                    child: DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Icon(
-                        Icons.help_outline_sharp,   // Nazwa ikony
-                        size: 1.0,
-                        color: violet,   // Wielkość ikony w pikselach
-                      ),
-                    ],
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-                    backgroundColor: violet,
-                    elevation: 10, // Dodanie cienia pod przycisku
-                    shadowColor: Color.fromARGB(192, 185, 23, 177), // Kolor cienia
-                    shape: RoundedRectangleBorder( // Dodanie ramki wokół przycisku
-                      borderRadius: BorderRadius.circular(20), // Zaokrąglone rogi
-                      side: BorderSide( // Dodanie ramki
-                        color: orange, // Kolor ramki
-                        width: 4, // Szerokość ramki
+                      child: AnimatedTextKit(
+                        repeatForever: true,
+                        animatedTexts: [
+                          FadeAnimatedText(
+                            '  Facebooku!',
+                            textStyle: TextStyle(
+                              color: Colors.blue, // Ustawienia koloru
+                              fontSize: 38.0, // Przykładowy rozmiar czcionki
+                              fontWeight: FontWeight.bold, // Przykładowa grubość czcionki
+                            ),
+                          ),
+
+                          FadeAnimatedText(
+                            'Instagramie!',
+                            textStyle: TextStyle(
+                              color: Colors.pink, // Ustawienia koloru
+                              fontSize: 40.0, // Przykładowy rozmiar czcionki
+                              fontWeight: FontWeight.bold, // Przykładowa grubość czcionki
+                            ),
+                          ),
+                          FadeAnimatedText(
+                            '    TikToku!',
+                            textStyle: TextStyle(
+                              color: Colors.white, // Ustawienia koloru
+                              fontSize: 40.0, // Przykładowy rozmiar czcionki
+                              fontWeight: FontWeight.bold, // Przykładowa grubość czcionki
+                            ),
+                          ),
+                        ],
+                        onTap: () {
+                          print("Tap Event");
+                        },
                       ),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Dodatkowy padding dla większego przycisku
+              )
+            ),
+            Positioned(
+              bottom: 80,
+              right: 50,
+              child: SocialMediaBar(),
+            ),
+            Positioned(
+              top:  415,
+              right: 60,
+              child: ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return RoleInfo();
+                    },
+                  );
+                },
+                child: Text(
+                  'Informacje o \n        rolach',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'BungeeSpice'
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: violet, // Zmienny kolor przycisku, jeśli masz zdefiniowane `violet`
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    side: BorderSide(
+                      color: orange, // Zmienny kolor ramki, jeśli masz zdefiniowane `orange`
+                      width: 4,
+                    ),
                   ),
                 ),
               ),
             ),
-            Positioned(
-              top: 725, // Możesz zmienić wartości top, left, right zgodnie z potrzebami layoutu
-              left: 1,
-              child: Image(
-                image: AssetImage('assets/animations/Robotka.gif'), // Ścieżka do twojego pliku
-                width: 350, // Szerokość obrazka
-                height: 350, // Wysokość obrazka// Dopasowanie obrazka
-              ),
-            ),
+
           ],
         ),
       ),

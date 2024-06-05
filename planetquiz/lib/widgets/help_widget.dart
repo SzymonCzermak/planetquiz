@@ -1,12 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:planetquiz/styles.dart';
 
 void showHelpOverlay(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
-  backgroundColor: Color.fromARGB(144, 56, 15, 133),
+  backgroundColor: Color.fromARGB(169, 27, 0, 53),
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(12.0)
   ),
@@ -14,9 +15,9 @@ void showHelpOverlay(BuildContext context) {
     constraints: BoxConstraints(maxWidth: 600),
     padding: EdgeInsets.all(16.0),
     decoration: BoxDecoration(
-      border: Border.all(color: Color.fromARGB(255, 109, 0, 233), width: 4), // Dodanie białej ramki o szerokości 2
+      border: Border.all(color: orange, width: 4), // Dodanie białej ramki o szerokości 2
       borderRadius: BorderRadius.circular(12.0), // Zaokrąglenie krawędzi
-      color: Color.fromARGB(188, 48, 14, 110), // Tło kontenera
+      color: Color.fromARGB(169, 27, 0, 53), // Tło kontenera
     ),
     child: Column(
   mainAxisSize: MainAxisSize.min,
@@ -39,7 +40,7 @@ void showHelpOverlay(BuildContext context) {
               "Jeśli zdobędziesz conajmniej 8 punktów otrzymasz zniżkę na gadżety!\n\n"
               "POWODZENIA!",
               textStyle: TextStyle(fontSize: 22.0, color: Colors.white),
-              speed: Duration(milliseconds: 15),
+              speed: Duration(milliseconds: 8),
               textAlign: TextAlign.center, // Dodane wyrównanie do środka
             ),
           ],
@@ -57,8 +58,11 @@ void showHelpOverlay(BuildContext context) {
   onPressed: () => Navigator.pop(context),
   style: ElevatedButton.styleFrom(
     foregroundColor: Colors.white,
-    backgroundColor: const Color.fromARGB(255, 172, 45, 36),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Zaokrąglone rogi
+    backgroundColor: grey,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30), // Zaokrąglone rogi
+      side: BorderSide(color: orange, width: 4), // Ramka
+    ),
     elevation: 10, // Cień pod przyciskiem
     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Większy padding
   ).copyWith(
@@ -66,7 +70,7 @@ void showHelpOverlay(BuildContext context) {
       (Set<MaterialState> states) {
         if (states.contains(MaterialState.pressed))
           return Color.fromARGB(255, 117, 22, 161); // Ciemniejszy kolor przy naciśnięciu
-        return Colors.red; // Domyślny kolor
+        return Color.fromARGB(69, 177, 176, 176); // Domyślny kolor
       },
     ),
   ),
@@ -75,18 +79,18 @@ void showHelpOverlay(BuildContext context) {
     children: [ // Tutaj zastąp 'iconName' nazwą ikony, którą chcesz wyświetlić
       SizedBox(width: 10), // Odstęp pomiędzy ikoną a tekstem
       Text(
-        'Wróć ',
-        style: TextStyle(fontSize: 30),
+        'Powrót',
+        style: TextStyle(fontSize: 23,fontFamily: 'BungeeSpice'),
       ),
       Icon(
-      Icons.settings_backup_restore,
-      color: Color.fromARGB(255, 255, 255, 255),
-      size: 33.0,
-    ),
-
+        Icons.settings_backup_restore,
+        color: Color.fromARGB(255, 255, 255, 255),
+        size: 1.0,
+      ),
     ],
   ),
 ),
+
 
     ),
   ],

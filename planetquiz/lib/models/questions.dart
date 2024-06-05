@@ -255,5 +255,71 @@ Map<String, List<Question>> roleQuestions = {
       ],
     ),
   ],
+  'Dźwiękowiec': [
+    Question(
+      question: 'Która technika polega na nagrywaniu dźwięku bezpośrednio na planie filmowym?',
+      correctAnswerIndex: 0,
+      options: [
+        'a) Foley',
+        'b) ADR',
+        'c) Looping',
+        'd) Mixing',
+      ],
+    ),
+    Question(
+      question: 'Który mikrofon jest najczęściej używany do nagrywania dialogów?',
+      correctAnswerIndex: 1,
+      options: [
+        'a) Dynamiczny',
+        'b) Pojemnościowy',
+        'c) Wstęgowy',
+        'd) Shotgun',
+      ],
+    ),
+    Question(
+      question: 'Co to jest postprodukcja dźwięku?',
+      correctAnswerIndex: 2,
+      options: [
+        'a) Proces nagrywania dialogów',
+        'b) Nagrywanie efektów dźwiękowych',
+        'c) Obróbka i miksowanie dźwięku po nagraniu',
+        'd) Nagrywanie muzyki do filmu',
+      ],
+    ),
+  ],
+  'Scenograf': [
+    Question(
+      question: 'Która technika polega na tworzeniu modelu scenografii w miniaturze?',
+      correctAnswerIndex: 3,
+      options: [
+        'a) Scenografia cyfrowa',
+        'b) Matte painting',
+        'c) Green screen',
+        'd) Maquette',
+      ],
+    ),
+    Question(
+      question: 'Który materiał jest często używany do budowy scenografii?',
+      correctAnswerIndex: 0,
+      options: [
+        'a) Styropian',
+        'b) Metal',
+        'c) Tkanina',
+        'd) Plastik',
+      ],
+    ),
+    Question(
+      question: 'Który z poniższych jest znanym scenografem?',
+      correctAnswerIndex: 1,
+      options: [
+        'a) Hans Zimmer',
+        'b) Dante Ferretti',
+        'c) Quentin Tarantino',
+        'd) Ridley Scott',
+      ],
+    ),
+  ],
 };
+
+
 

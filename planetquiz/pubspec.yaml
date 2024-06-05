@@ -26,6 +26,7 @@ dependencies:
   timer_button: ^2.1.1
   dynamic_fonts: ^2.2.1
   button_animations: ^2.0.0+3
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +57,13 @@ flutter:
     - assets/animations/RobotkaWin.gif
     - assets/Tla/Dogrywka.gif
     - assets/sounds/Dogrywka.mp3
+    - assets/social/facebook_qr.png
+    - assets/social/instagram_qr.png
+    - assets/social/tiktok_qr.png
+    - assets/social/fb.png
+    - assets/social/ig.png
+    - assets/social/tiktok.png
+
   fonts:
     - family: SpaceMono
       fonts:
