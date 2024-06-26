@@ -74,7 +74,7 @@ class _ResultScreenState extends State<ResultScreen>
     const String _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     math.Random _rnd = math.Random();
     String code = String.fromCharCodes(Iterable.generate(
-        10, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+        4, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
     saveDiscountCodeToRealtimeDatabase(code);
     return code;
   }
@@ -183,8 +183,8 @@ Widget build(BuildContext context) {
               child: widget.score >= 8
                   ? Image.asset('assets/animations/RobotkaWin.gif',
                       width: 200, height: 200)
-                  : Image.asset('assets/animations/RobotkaWin.gif',
-                      width: 200, height: 200),
+                  : Image.asset('assets/animations/RobotkaLoose.gif',
+                      width: 250, height: 250),
             ),
             if (widget.score >= 8) 
               Positioned(
@@ -281,7 +281,7 @@ Widget build(BuildContext context) {
         TyperAnimatedText(
           "Niestety nie udało sie, Pamiętaj, że zawsze możesz spróbować ponownie!",
           textStyle: TextStyle(fontSize: 16.0, color: Colors.white),
-          speed: Duration(milliseconds: 80),
+          speed: Duration(milliseconds: 20),
           textAlign: TextAlign.center,
         ),
       ],

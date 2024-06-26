@@ -121,44 +121,48 @@ class _FirstScreenState extends State<FirstScreen> {
                   SizedBox(
                     width: 550.0,
                     child: DropdownButtonFormField<String>(
-                    value: _selectedName,
-                    style: TextStyle(fontSize: 65.0),  // Zwiększ wielkość tekstu, jeśli potrzeba
-                    decoration: InputDecoration(
-                      labelText: 'Wybierz swoją rolę:',
-                      labelStyle: TextStyle(fontSize: 45.0,color: Colors.white),
-                      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
-                    ),
-                    hint: Text(
-                      'Kliknij Tutaj aby wybrać role!',
-                      style: TextStyle(fontSize: 20.0,color: Colors.white70,fontWeight: FontWeight.bold),
-                    ),
-                    items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0), // Dodaj odstęp pionowy
-                          child: Row(
-                            children: <Widget>[
-                              Icon(_nameIcons[value], size: 32.0),
-                              SizedBox(width: 15),
-                              Text(
-                                value,
-                                style: TextStyle(fontSize: 37.0),
+                      value: _selectedName,
+                      style: TextStyle(fontSize: 65.0),  // Zwiększ wielkość tekstu, jeśli potrzeba
+                      decoration: InputDecoration(
+                        labelText: 'Wybierz swoją rolę:',
+                        labelStyle: TextStyle(fontSize: 45.0, color: Colors.white),
+                        contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
+                      ),
+                      hint: Text(
+                        'Kliknij Tutaj aby wybrać role!',
+                        style: TextStyle(fontSize: 20.0, color: Colors.white70, fontWeight: FontWeight.bold),
+                      ),
+                      dropdownColor: Color.fromARGB(216, 27, 0, 53), // Kolor tła paska z rolami
+                      items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Container(
+                            color: Colors.transparent, // Kolor tła poszczególnych elementów
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10.0), // Dodaj odstęp pionowy
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(_nameIcons[value], size: 32.0, color: Colors.white), // Kolor ikony
+                                  SizedBox(width: 15),
+                                  Text(
+                                    value,
+                                    style: TextStyle(fontSize: 37.0, color: Colors.white), // Kolor tekstu
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _selectedName = newValue;
-                      });
-                    },
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _selectedName = newValue;
+                        });
+                      },
+                      icon: Icon(Icons.arrow_drop_down, color: Colors.white, size: 40), // Kolor i rozmiar ikony strzałki
+                    ),
                   ),
 
-
-                  ),
                   SizedBox(height: 30),
                   Container(
                     width: 455,
@@ -319,7 +323,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   'Informacje o \n        rolach',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 12,
+                    fontSize: 13,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'BungeeSpice'
                   ),

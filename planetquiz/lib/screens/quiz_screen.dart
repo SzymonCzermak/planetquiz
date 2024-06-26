@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:planetquiz/models/questions.dart';
 import 'package:planetquiz/screens/RoleSpecificQuizScreen.dart';
+import 'package:planetquiz/styles.dart';
 import 'package:planetquiz/widgets/answer_card.dart';
 import 'package:planetquiz/widgets/help_widget.dart';
 import 'package:planetquiz/widgets/next_button.dart';
@@ -49,7 +50,10 @@ class _QuizScreenState extends State<QuizScreen> {
   void pickAnswer(int value) {
     if (selectedAnswerIndex != null) return;
 
-    selectedAnswerIndex = value;
+    setState(() {
+      selectedAnswerIndex = value;
+    });
+
     final question = questions[randomQuestionIndices[questionIndex]];
     if (selectedAnswerIndex == question.correctAnswerIndex) {
       score++;
@@ -57,26 +61,86 @@ class _QuizScreenState extends State<QuizScreen> {
     } else {
       playSound('assets/sounds/wrong_answer.mp3');
     }
-    setState(() {});
   }
+
+  void showCompletionDialog() {
+  int countdown = 10;
+  
+  showGeneralDialog(
+    context: context,
+    barrierDismissible: false,
+    barrierLabel: '',
+    transitionDuration: Duration(milliseconds: 500),
+    pageBuilder: (context, anim1, anim2) {
+      return StatefulBuilder(
+        builder: (context, setState) {
+          Future.delayed(Duration(seconds: 1), () {
+            if (countdown > 0) {
+              setState(() {
+                countdown--;
+              });
+            } else {
+              Navigator.of(context).pop(); // Dismiss the dialog
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => RoleSpecificQuizScreen(
+                    score: score,
+                    userRole: widget.userRole,
+                    userRoleIcon: widget.userRoleIcon,
+                  ),
+                ),
+              );
+            }
+          });
+
+          return AlertDialog(
+  backgroundColor: Color.fromARGB(206, 27, 0, 53),
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(12.0),
+    side: BorderSide(color: orange, width: 4),
+  ),
+  title: Text(
+    'Pierwsza część za tobą!\n Teraz pora na pytania roli która wybrałeś',
+    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
+    textAlign: TextAlign.center,
+  ),
+  content: Text(
+    'Twój aktualny wynik to: $score.\n\n\n\nPrzejdziemy dalej za $countdown sekund...',
+    style: TextStyle(fontSize: 22, color: Colors.white),
+    textAlign: TextAlign.center,
+  ),
+  contentPadding: EdgeInsets.all(16.0),
+);
+
+
+        },
+      );
+    },
+    transitionBuilder: (context, anim1, anim2, child) {
+      return ScaleTransition(
+        scale: Tween(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(
+            parent: anim1,
+            curve: Curves.easeOutBack,
+          ),
+        ),
+        child: child,
+      );
+    },
+  );
+}
+
 
   void goToNextQuestion() {
     if (questionIndex < randomQuestionIndices.length - 1) {
-      questionIndex++;
-      selectedAnswerIndex = null;
+      setState(() {
+        questionIndex++;
+        selectedAnswerIndex = null;
+      });
     } else {
       playSound('assets/sounds/quiz_end.mp3');
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => RoleSpecificQuizScreen(
-            score: score,
-            userRole: widget.userRole,
-            userRoleIcon: widget.userRoleIcon,
-          ),
-        ),
-      );
+      showCompletionDialog();
     }
-    setState(() {});
   }
 
   @override
@@ -166,13 +230,13 @@ class _QuizScreenState extends State<QuizScreen> {
                   isLastQuestion
                       ? RectangularButton(
                           onPressed: () => goToNextQuestion(),
-                          label: 'Finish',
+                          label: 'Zakończ',
                         )
                       : RectangularButton(
                           onPressed: selectedAnswerIndex != null
                               ? () => goToNextQuestion()
                               : null,
-                          label: 'Next',
+                          label: 'Następne',
                         ),
                 ],
               ),

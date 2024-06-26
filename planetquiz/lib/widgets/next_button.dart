@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:planetquiz/styles.dart';
 
 class RectangularButton extends StatelessWidget {
   const RectangularButton({
@@ -18,7 +19,14 @@ class RectangularButton extends StatelessWidget {
         height: 70,
         width: double.infinity,
         child: Card(
-          color: onPressed != null ? Color.fromARGB(133, 104, 14, 156) : null,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10), // Zaokrąglone rogi, jeśli chcesz
+            side: BorderSide(
+              color: orange, // Kolor obramowania
+              width: 2, // Szerokość obramowania
+            ),
+          ),
+          color: onPressed != null ? Color.fromARGB(133, 104, 14, 156) : Color.fromARGB(155, 70, 6, 107), // Kolor nieaktywny
           child: Center(
             child: Text(
               label,

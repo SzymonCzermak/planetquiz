@@ -55,6 +55,7 @@ flutter:
     - assets/zdjQuiz/k7.jpg
     - assets/zdjQuiz/k1.jpg
     - assets/animations/RobotkaWin.gif
+    - assets/animations/RobotkaLoose.gif
     - assets/Tla/Dogrywka.gif
     - assets/sounds/Dogrywka.mp3
     - assets/social/facebook_qr.png
