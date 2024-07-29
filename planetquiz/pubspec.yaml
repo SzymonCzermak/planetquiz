@@ -27,6 +27,7 @@ dependencies:
   dynamic_fonts: ^2.2.1
   button_animations: ^2.0.0+3
   flutter_svg: ^2.0.10+1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -64,7 +65,12 @@ flutter:
     - assets/social/fb.png
     - assets/social/ig.png
     - assets/social/tiktok.png
+    - assets/RoboAnim/Robotka_Dance.mp4
+    - assets/RoboAnim/Robotka_IDE.mp4
+    - assets/RoboAnim/Robotka_Sad.mp4
+    - assets/RoboAnim/Robotka_Yes.mp4
 
+    
   fonts:
     - family: SpaceMono
       fonts:

@@ -4,6 +4,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
+import 'package:planetquiz/Animation/Robotka_Sad.dart';
+import 'package:planetquiz/Animation/Robotka_Yes.dart';
 import 'package:planetquiz/screens/first_screen.dart';
 import 'package:planetquiz/widgets/win_widget.dart';
 import 'package:timer_button/timer_button.dart';
@@ -144,7 +146,7 @@ Widget build(BuildContext context) {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        '${(widget.score / 10 * 100).round()}',
+                        '${(widget.score / 10 * 100).round()}%',
                         style: const TextStyle(fontSize: 25),
                       ),
                     ],
@@ -177,15 +179,14 @@ Widget build(BuildContext context) {
               ),
             ),
             Positioned(
-              top: 550,
-              left: 30,
-              right: 30,
-              child: widget.score >= 8
-                  ? Image.asset('assets/animations/RobotkaWin.gif',
-                      width: 200, height: 200)
-                  : Image.asset('assets/animations/RobotkaLoose.gif',
-                      width: 250, height: 250),
-            ),
+  top: 550,
+  left: 30,
+  right: 30,
+  child: widget.score >= 8
+      ? RobotkaAnimationYes()
+      : RobotkaAnimationSad(),
+),
+
             if (widget.score >= 8) 
               Positioned(
   bottom: 250,
