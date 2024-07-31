@@ -1,7 +1,5 @@
 import 'package:planetquiz/models/question.dart';
 
-import 'question.dart';
-
 const List<Question> questions = [
   Question(
     question: 'Kto zajmuje sie eksplozjami w fimie?',

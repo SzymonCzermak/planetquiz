@@ -4,6 +4,7 @@ import 'package:planetquiz/models/questions.dart';
 import 'package:planetquiz/screens/result_screen.dart';
 import 'package:planetquiz/widgets/answer_card.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:planetquiz/widgets/loading_screen.dart';
 import 'package:planetquiz/widgets/next_button.dart';
 
 class RoleSpecificQuizScreen extends StatefulWidget {
@@ -66,15 +67,27 @@ class _RoleSpecificQuizScreenState extends State<RoleSpecificQuizScreen> {
       });
     } else {
       playSound('assets/sounds/quiz_end.mp3');
-      Navigator.of(context).pushReplacement(
+      
+      Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => ResultScreen(
-            score: score,
-            userRole: widget.userRole,
-            userRoleIcon: widget.userRoleIcon,
-          ),
+          builder: (_) => LoadingScreen(),
         ),
       );
+
+      // Simuluj czas ładowania przed przejściem do ekranu wyników
+      Future.delayed(Duration(seconds: 2), () {
+        if (mounted) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (_) => ResultScreen(
+                score: score,
+                userRole: widget.userRole,
+                userRoleIcon: widget.userRoleIcon,
+              ),
+            ),
+          );
+        }
+      });
     }
   }
 

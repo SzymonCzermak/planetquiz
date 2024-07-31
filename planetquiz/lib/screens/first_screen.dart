@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:planetquiz/Animation/Robotka_HI.dart';
+import 'package:planetquiz/route_generator.dart';
 import 'package:planetquiz/screens/quiz_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:planetquiz/styles.dart';
 import 'package:planetquiz/widgets/help_widget.dart';
 import 'package:button_animations/button_animations.dart';
+import 'package:planetquiz/widgets/no_role_dialog.dart';
 import 'package:planetquiz/widgets/role_info.dart';
 import 'package:planetquiz/widgets/social_media_bar.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -54,39 +56,33 @@ class _FirstScreenState extends State<FirstScreen> {
   Future<void> playSound() async {
     await _audioPlayer.play(AssetSource('sounds/Startquiz.mp3'));
   }
+  
 
   void _startQuiz() {
     if (_selectedName != null) {
       playSound();
       Future.delayed(Duration(seconds: 0), () {
         Navigator.of(context).push(
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => QuizScreen(
+          createRoute(
+            QuizScreen(
               userName: _nameController.text,
               userSurname: _surnameController.text,
               userRole: _selectedName!,
               userRoleIcon: _nameIcons[_selectedName]!,
             ),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              var begin = 0.0;
-              var end = 1.0;
-              var curve = Curves.easeInOut;
-
-              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-              return FadeTransition(
-                opacity: animation.drive(tween),
-                child: child,
-              );
-            },
           ),
         );
       });
     } else {
-      // Logika, jeśli rola nie jest wybrana, może tu zostać, jeśli potrzebujesz
-      // Na przykład: Informacja dla użytkownika, że musi wybrać rolę
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return NoRoleDialog(message: 'Proszę wybrać rolę przed rozpoczęciem quizu.');
+        },
+      );
     }
-  }
+}
+
 
   @override
   Widget build(BuildContext context) {

@@ -6,6 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 import 'package:planetquiz/Animation/Robotka_Sad.dart';
 import 'package:planetquiz/Animation/Robotka_Yes.dart';
+import 'package:planetquiz/route_generator.dart';
 import 'package:planetquiz/screens/first_screen.dart';
 import 'package:planetquiz/widgets/win_widget.dart';
 import 'package:timer_button/timer_button.dart';
@@ -121,39 +122,52 @@ Widget build(BuildContext context) {
               ),
             ),
             Positioned(
-              top: 200,
-              left: 50,
-              right: 50,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    height:275,
-                    width: 275,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 10,
-                      value: _animation.value * widget.score / 10,
-                      color: Colors.green,
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.score.toString(),
-                        style: const TextStyle(fontSize: 75),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        '${(widget.score / 10 * 100).round()}%',
-                        style: const TextStyle(fontSize: 25),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+  top: 200,
+  left: 100,
+  right: 100,
+  child: Column(
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '${widget.score} / 13 punktów',
+            style: const TextStyle(fontSize: 40),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            '(${(widget.score / 13 * 100).round()}%)',
+            style: const TextStyle(fontSize: 20),
+          ),
+        ],
+      ),
+      const SizedBox(height: 20),
+      Container(
+        height: 50,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          border: Border.all(color: orange, width: 4), // Kolor ramki i jej grubość
+          borderRadius: BorderRadius.circular(5), // Zaokrąglenie rogów
+          boxShadow: [
+            BoxShadow(
+              color: violet.withOpacity(0.5), // Kolor cienia z przezroczystością
+              spreadRadius: 10,
+              blurRadius: 10,
+              offset: Offset(4, 4), // Przesunięcie cienia
             ),
+          ],
+        ),
+        child: LinearProgressIndicator(
+          value: _animation.value * widget.score / 13,
+          color: violet2,
+          backgroundColor: Color.fromARGB(197, 193, 192, 192),
+        ),
+      ),
+    ],
+  ),
+),
+
+
             Positioned(
               top: 450,
               left: 30,
@@ -179,13 +193,14 @@ Widget build(BuildContext context) {
               ),
             ),
             Positioned(
-  top: 550,
-  left: 30,
-  right: 30,
-  child: widget.score >= 8
-      ? RobotkaAnimationYes()
-      : RobotkaAnimationSad(),
-),
+              top: 550,
+              bottom: 250,
+              left: 175,
+              right: 175,
+              child: widget.score >= 8
+                  ? RobotkaAnimationYes()
+                  : RobotkaAnimationSad(),
+            ),
 
             if (widget.score >= 8) 
               Positioned(
@@ -252,50 +267,6 @@ Widget build(BuildContext context) {
 )
 
             else // Else clause if the score is less than 8
-              Positioned(
-                bottom: 275,
-  top: 775,
-  left: 150,
-  right: 150,
-                child: Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 1),
-  child: Container(
-    // Increase the padding as needed, or adjust here to control spacing inside the container
-    padding: const EdgeInsets.all(13.0), // Increased padding inside for more text space
-    // Optionally set explicit dimensions or use MediaQuery for responsiveness
-    width: MediaQuery.of(context).size.width * 0.9, // 90% of screen width
-    height: MediaQuery.of(context).size.height * 0.1, // 10% of screen height, adjust as necessary
-    decoration: BoxDecoration(
-      color: Color.fromARGB(48, 114, 36, 36), // Red background for the text area
-      borderRadius: BorderRadius.circular(60), // Rounded corners for the container
-      boxShadow: [ // Optional shadow for aesthetic depth
-        BoxShadow(
-          color: Color.fromARGB(132, 241, 0, 0).withOpacity(0.5),
-          spreadRadius: 15,
-          blurRadius: 20,
-          offset: Offset(0, 5), // Changes position of shadow
-        ),
-      ],
-    ),
-    child: AnimatedTextKit(
-      animatedTexts: [
-        TyperAnimatedText(
-          "Niestety nie udało sie, Pamiętaj, że zawsze możesz spróbować ponownie!",
-          textStyle: TextStyle(fontSize: 16.0, color: Colors.white),
-          speed: Duration(milliseconds: 20),
-          textAlign: TextAlign.center,
-        ),
-      ],
-      isRepeatingAnimation: false,
-      displayFullTextOnTap: true,
-      stopPauseOnTap: true,
-    ),
-  ),
-),
-
-
-
-              ),
 
             Positioned(
   bottom: 100,
@@ -325,14 +296,14 @@ Widget build(BuildContext context) {
     borderRadius: BorderRadius.circular(64.0), // Promień zaokrąglenia ramki (opcjonalnie)
   ),
   child: TimerButton(
-    label: "Spróbuj Ponownie",
-    timeOutInSeconds: 5,
-    onPressed: () {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const FirstScreen()),
-        (Route<dynamic> route) => false,
-      );
-    },
+                        label: "Spróbuj Ponownie",
+                        timeOutInSeconds: 5,
+                        onPressed: () {
+                          Navigator.of(context).pushAndRemoveUntil(
+                            createRoute(const FirstScreen()),
+                            (Route<dynamic> route) => false,
+                          );
+                        },
     buttonType: ButtonType.textButton,
     disabledColor: Color.fromARGB(148, 60, 1, 116),
     color: violet,
