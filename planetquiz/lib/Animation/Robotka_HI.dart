@@ -14,29 +14,28 @@ class _RobotkaAnimationHIState extends State<RobotkaAnimationHI> {
   OverlayEntry? _overlayEntry;
   bool _isOverlayVisible = false;
   final List<String> messages = [
-  'Cześć jestem Pixi! Witaj w PlanetQuzie.',
-  'Hej! Gotowy na quiz?',
-  'Witaj! Zaczynamy zabawę?',
-  'Cześć! Sprawdź swoją wiedzę.',
-  'Hej! Czas na quiz!',
-  'Zobaczmy, co potrafisz!',
-  'Witaj ponownie! Gotowy na kolejne wyzwanie?',
-  'Cześć! Czy jesteś gotów na quiz?',
-  'Hej! Zobaczmy, ile wiesz!',
-  'Witaj w PlanetQuzie! Zaczynamy?',
-  'Cześć! Jak Ci idzie nauka?',
-  'Hej! Czas na testowanie Twojej wiedzy.',
-  'Witaj! Gotowy na nowe pytania?',
-  'Cześć! Zaczynamy quiz!',
-  'Hej! Sprawdźmy Twoje umiejętności.',
-  'Witaj! Czy jesteś gotów na wyzwanie?',
-  'Cześć! Przygotuj się na quiz!',
-  'Hej! Czas na sprawdzenie Twojej wiedzy.',
-  'Witaj! Jak Ci idzie? Zobaczmy!',
-  'Cześć! Zaczynamy kolejne pytania.',
-  'Co mówi ocean do plaży? Nic, tylko falami!',
-];
-
+    'Cześć jestem Pixi! Witaj w PlanetQuzie.',
+    'Hej! Gotowy na quiz?',
+    'Witaj! Zaczynamy zabawę?',
+    'Cześć! Sprawdź swoją wiedzę.',
+    'Hej! Czas na quiz!',
+    'Zobaczmy, co potrafisz!',
+    'Witaj ponownie! Gotowy na kolejne wyzwanie?',
+    'Cześć! Czy jesteś gotów na quiz?',
+    'Hej! Zobaczmy, ile wiesz!',
+    'Witaj w PlanetQuzie! Zaczynamy?',
+    'Cześć! Jak Ci idzie nauka?',
+    'Hej! Czas na testowanie Twojej wiedzy.',
+    'Witaj! Gotowy na nowe pytania?',
+    'Cześć! Zaczynamy quiz!',
+    'Hej! Sprawdźmy Twoje umiejętności.',
+    'Witaj! Czy jesteś gotów na wyzwanie?',
+    'Cześć! Przygotuj się na quiz!',
+    'Hej! Czas na sprawdzenie Twojej wiedzy.',
+    'Witaj! Jak Ci idzie? Zobaczmy!',
+    'Cześć! Zaczynamy kolejne pytania.',
+    'Co mówi ocean do plaży? Nic, tylko falami!',
+  ];
 
   @override
   void initState() {
@@ -130,7 +129,7 @@ class _RobotkaAnimationHIState extends State<RobotkaAnimationHI> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => VideoControllerProvider('assets/RoboAnim/Robotka_IDE.mp4'),
+      create: (_) => VideoControllerProvider('assets/RoboAnim/Robotka_Hi.mp4'),
       child: Consumer<VideoControllerProvider>(
         builder: (context, videoProvider, child) {
           if (!videoProvider.controller.value.isInitialized) {
@@ -161,25 +160,33 @@ class _RobotkaAnimationHIState extends State<RobotkaAnimationHI> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50.0),
-                      child: Stack(
-                        children: [
-                          VideoPlayer(videoProvider.controller),
-                          Positioned.fill(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color.fromARGB(0, 94, 94, 94),
-                                    violet2.withOpacity(0.5),
-                                  ],
-                                  stops: [0.1, 0.9],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
+                      child: ClipRect(
+                        child: Transform.translate(
+                          offset: Offset(8, 14), // Adjust the offset to move the video down
+                          child: Transform.scale(
+                            scale: 1.5, // Adjust the scale factor to zoom in
+                            child: Stack(
+                              children: [
+                                VideoPlayer(videoProvider.controller),
+                                Positioned.fill(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color.fromARGB(0, 94, 94, 94),
+                                          violet2.withOpacity(0.5),
+                                        ],
+                                        stops: [0.1, 0.9],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

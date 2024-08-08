@@ -67,11 +67,14 @@ class _RoleSpecificQuizScreenState extends State<RoleSpecificQuizScreen> {
       });
     } else {
       playSound('assets/sounds/quiz_end.mp3');
-      
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => LoadingScreen(),
-        ),
+
+      // Show loading dialog
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return LoadingDialog();
+        },
       );
 
       // Simuluj czas ładowania przed przejściem do ekranu wyników
@@ -156,7 +159,11 @@ class _RoleSpecificQuizScreenState extends State<RoleSpecificQuizScreen> {
                         isSelected: selectedAnswerIndex == index,
                         selectedAnswerIndex: selectedAnswerIndex,
                         correctAnswerIndex: question.correctAnswerIndex,
-                        backgroundColor: selectedAnswerIndex != null ? (selectedAnswerIndex == index ? Color.fromARGB(255, 161, 3, 3) : Color.fromARGB(255, 61, 34, 34)) : const Color.fromARGB(255, 75, 28, 28),
+                        backgroundColor: selectedAnswerIndex != null
+                            ? (selectedAnswerIndex == index
+                                ? Color.fromARGB(255, 161, 3, 3)
+                                : Color.fromARGB(255, 61, 34, 34))
+                            : const Color.fromARGB(255, 75, 28, 28),
                         selectedBackgroundColor: Color.fromARGB(255, 233, 62, 62),
                         correctBorderColor: Colors.green,
                         wrongBorderColor: Colors.red,
@@ -167,7 +174,9 @@ class _RoleSpecificQuizScreenState extends State<RoleSpecificQuizScreen> {
                 ),
                 RectangularButton(
                   onPressed: selectedAnswerIndex != null ? confirmAnswer : null,
-                  label: currentQuestionIndex < questions.length - 1 ? 'Następny' : 'Zakończ',
+                  label: currentQuestionIndex < questions.length - 1
+                      ? 'Następny'
+                      : 'Zakończ',
                 ),
               ],
             ),

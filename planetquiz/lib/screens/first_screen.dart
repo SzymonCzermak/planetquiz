@@ -56,7 +56,6 @@ class _FirstScreenState extends State<FirstScreen> {
   Future<void> playSound() async {
     await _audioPlayer.play(AssetSource('sounds/Startquiz.mp3'));
   }
-  
 
   void _startQuiz() {
     if (_selectedName != null) {
@@ -81,8 +80,7 @@ class _FirstScreenState extends State<FirstScreen> {
         },
       );
     }
-}
-
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +95,7 @@ class _FirstScreenState extends State<FirstScreen> {
         child: Stack(
           children: <Widget>[
             Positioned(
-              top: 30,
+              top: 10,
               left: 0,
               right: 0,
               child: Image.asset(
@@ -107,102 +105,170 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
             ),
             Positioned(
-              top: 390, // Adjust as needed to center the elements vertically
-              left: 50, // Adjust as needed to center the elements horizontally
+              top: 315,
+              left: 50,
               right: 50,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  SizedBox(
-                    width: 550.0,
-                    child: DropdownButtonFormField<String>(
-                      value: _selectedName,
-                      style: TextStyle(fontSize: 65.0), // Zwiększ wielkość tekstu, jeśli potrzeba
-                      decoration: InputDecoration(
-                        labelText: 'Wybierz swoją rolę:',
-                        labelStyle: TextStyle(fontSize: 45.0, color: Colors.white),
-                        contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
-                      ),
-                      hint: Text(
-                        'Kliknij Tutaj aby wybrać role!',
-                        style: TextStyle(fontSize: 20.0, color: Colors.white70, fontWeight: FontWeight.bold),
-                      ),
-                      dropdownColor: Color.fromARGB(216, 27, 0, 53), // Kolor tła paska z rolami
-                      items: _nameOptions.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Container(
-                            color: Colors.transparent, // Kolor tła poszczególnych elementów
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10.0), // Dodaj odstęp pionowy
-                              child: Row(
-                                children: <Widget>[
-                                  Icon(_nameIcons[value], size: 32.0, color: Colors.white), // Kolor ikony
-                                  SizedBox(width: 15),
-                                  Text(
-                                    value,
-                                    style: TextStyle(fontSize: 37.0, color: Colors.white), // Kolor tekstu
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _selectedName = newValue;
-                        });
-                      },
-                      icon: Icon(Icons.arrow_drop_down, color: Colors.white, size: 40), // Kolor i rozmiar ikony strzałki
+                  Text(
+                    '🔻Poniej wybierz swoją role🔻',
+                    style: TextStyle(
+                      fontSize: 32.0, // Rozmiar czcionki
+                      color: Colors.white, // Kolor czcionki
+                      fontWeight: FontWeight.bold, // Grubość czcionki
+                      shadows: [
+                        Shadow(
+                          blurRadius: 10.0, // Rozmycie cienia
+                          color: violet2, // Kolor cienia
+                          offset: Offset(2.0, 2.0), // Przesunięcie cienia
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 30),
-                  Container(
-                    width: 455,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: orange, // Kolor ramki
-                        width: 4.0, // Szerokość ramki
-                      ),
-                      borderRadius: BorderRadius.circular(40.0), // Zaokrąglenie rogów ramki
-                    ),
-                    child: AnimatedButton(
-                      borderRadius: 40,
-                      width: 450,
-                      height: 100,
-                      child: Text(
-                        "START",
-                        style: TextStyle(
-                          fontFamily: 'BungeeSpice',
-                          fontSize: 50, // Wielkość tekstu
-                          fontWeight: FontWeight.bold, // Grubość czcionki
-                          color: gold, // Kolor tekstu
+                  SizedBox(height: 15,),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: _nameOptions.sublist(0, 3).map((String value) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0), // Odstęp między przyciskami
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: Size(115, 65), // Stałe wymiary przycisku
+                                  backgroundColor: _selectedName == value ? violet : const Color.fromARGB(156, 96, 96, 96),
+                                  padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0), // Padding przycisków
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15), // Zaokrąglenie rogów
+                                    side: BorderSide(
+                                      color: orange,
+                                      width: 2,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedName = value;
+                                  });
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(_nameIcons[value], size: 20.0, color: Colors.white), // Zmniejsz rozmiar ikony
+                                    SizedBox(height: 3), // Odstęp między ikoną a tekstem
+                                    Text(
+                                      value,
+                                      style: TextStyle(fontSize: 12.0, color: Colors.white), // Zmniejsz rozmiar czcionki
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
                         ),
-                      ),
-                      onTap: () {
-                        _startQuiz();
-                      },
-                      isMultiColor: true,
-                      colors: [violet, violet2],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: _nameOptions.sublist(3).map((String value) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0), // Odstęp między przyciskami
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: Size(115, 65), // Stałe wymiary przycisku
+                                  backgroundColor: _selectedName == value ? violet : Color.fromARGB(156, 96, 96, 96),
+                                  padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0), // Padding przycisków
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15), // Zaokrąglenie rogów
+                                    side: BorderSide(
+                                      color: orange,
+                                      width: 2,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedName = value;
+                                  });
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(_nameIcons[value], size: 20.0, color: Colors.white), // Zmniejsz rozmiar ikony
+                                    SizedBox(height: 3), // Odstęp między ikoną a tekstem
+                                    Text(
+                                      value,
+                                      style: TextStyle(fontSize: 12.0, color: Colors.white), // Zmniejsz rozmiar czcionki
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
                     ),
-                  )
+                  ),
+
+                  SizedBox(height: 20),
+                  Container(
+  decoration: BoxDecoration(
+    border: Border.all(
+      color: orange, // Kolor ramki
+      width: 2.0, // Szerokość ramki
+    ),
+    borderRadius: BorderRadius.circular(40.0), // Zaokrąglenie rogów ramki
+  ),
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(36.0), // Zaokrąglenie rogów przycisku
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: gold, backgroundColor: violet, // Kolor tekstu
+        fixedSize: Size(430, 100), // Rozmiar przycisku uwzględniający szerokość ramki
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(36.0), // Zaokrąglenie rogów przycisku
+        ),
+      ),
+      onPressed: () {
+        _startQuiz();
+      },
+      child: Text(
+        "START",
+        style: TextStyle(
+          fontFamily: 'BungeeSpice',
+          fontSize: 50, // Wielkość tekstu
+          fontWeight: FontWeight.bold, // Grubość czcionki
+        ),
+      ),
+    ),
+  ),
+)
+
+
+
+
+
                 ],
               ),
             ),
             Positioned(
               bottom: 400,
-              right: 185,
+              right: 345,
               child: SizedBox(
-                width: 300,
-                height: 75,
+                width: 200,
+                height: 70,
                 child: ElevatedButton(
                   onPressed: () => showHelpOverlay(context),
                   child: Text(
                     'Jak Grać?',
                     style: TextStyle(
                       color: Colors.white, // Kolor tekstu
-                      fontSize: 24, // Zwiększony rozmiar tekstu
+                      fontSize: 17, // Zwiększony rozmiar tekstu
                       fontWeight: FontWeight.bold,
                       fontFamily: 'BungeeSpice', // Pogrubienie tekstu
                     ),
@@ -216,7 +282,7 @@ class _FirstScreenState extends State<FirstScreen> {
                       borderRadius: BorderRadius.circular(30),
                       side: BorderSide(
                         color: orange,
-                        width: 4,
+                        width: 2,
                       ),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Dodatkowy padding dla większego przycisku
@@ -287,38 +353,43 @@ class _FirstScreenState extends State<FirstScreen> {
               child: SocialMediaBar(),
             ),
             Positioned(
-              top: 415,
-              right: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return RoleInfo();
-                    },
-                  );
-                },
-                child: Text(
-                  'Informacje o \n        rolach',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'BungeeSpice'),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: violet, // Zmienny kolor przycisku, jeśli masz zdefiniowane `violet`
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    side: BorderSide(
-                      color: orange, // Zmienny kolor ramki, jeśli masz zdefiniowane `orange`
-                      width: 4,
+              bottom: 400,
+              right: 135,
+              child: SizedBox(
+                width: 200,
+                height: 70,
+                child: ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return RoleInfo();
+                      },
+                    );
+                  },
+                  child: Text(
+                    'Informacje o \n        rolach',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'BungeeSpice'),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: violet, // Zmienny kolor przycisku, jeśli masz zdefiniowane `violet`
+                    padding: EdgeInsets.all(10), // Możesz dostosować padding w zależności od potrzeb
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      side: BorderSide(
+                        color: orange, // Zmienny kolor ramki, jeśli masz zdefiniowane `orange`
+                        width: 2,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
+
           ],
         ),
       ),

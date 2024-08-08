@@ -69,6 +69,8 @@ flutter:
     - assets/RoboAnim/Robotka_IDE.mp4
     - assets/RoboAnim/Robotka_Sad.mp4
     - assets/RoboAnim/Robotka_Yes.mp4
+    - assets/RoboAnim/Robotka_Hi.mp4
+
 
     
   fonts:
