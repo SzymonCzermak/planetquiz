@@ -105,14 +105,14 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
             ),
             Positioned(
-              top: 315,
+              top: 300,
               left: 50,
               right: 50,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
-                    '🔻Poniej wybierz swoją role🔻',
+                    '🔻Wybierz swoją role ponizej🔻',
                     style: TextStyle(
                       fontSize: 32.0, // Rozmiar czcionki
                       color: Colors.white, // Kolor czcionki
@@ -241,7 +241,7 @@ class _FirstScreenState extends State<FirstScreen> {
         "START",
         style: TextStyle(
           fontFamily: 'BungeeSpice',
-          fontSize: 50, // Wielkość tekstu
+          fontSize: 60, // Wielkość tekstu
           fontWeight: FontWeight.bold, // Grubość czcionki
         ),
       ),
@@ -257,7 +257,7 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
             ),
             Positioned(
-              bottom: 400,
+              bottom: 415,
               right: 345,
               child: SizedBox(
                 width: 200,
@@ -353,7 +353,7 @@ class _FirstScreenState extends State<FirstScreen> {
               child: SocialMediaBar(),
             ),
             Positioned(
-              bottom: 400,
+              bottom: 415,
               right: 135,
               child: SizedBox(
                 width: 200,

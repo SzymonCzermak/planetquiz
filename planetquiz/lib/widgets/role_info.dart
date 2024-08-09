@@ -38,7 +38,7 @@ class RoleInfo extends StatelessWidget {
         constraints: BoxConstraints(maxWidth: 600),
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          border: Border.all(color: orange, width: 4),
+          border: Border.all(color: orange, width: 2),
           borderRadius: BorderRadius.circular(12.0),
           color: Color.fromARGB(169, 27, 0, 53),
         ),
@@ -46,8 +46,8 @@ class RoleInfo extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             SizedBox(
-              height: 850,
-              width: 550, // Ograniczenie wysokości okna dialogowego
+              height: 750,
+              width: 500, // Ograniczenie wysokości okna dialogowego
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -213,7 +213,7 @@ class RoleInfo extends StatelessWidget {
                     borderRadius: BorderRadius.circular(60),
                     side: BorderSide(
                       color: orange, // Dodajemy kolorową ramkę
-                      width: 4,
+                      width: 2,
                     ),
                   ),
                   elevation: 10,

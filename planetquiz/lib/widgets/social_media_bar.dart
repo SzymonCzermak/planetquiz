@@ -93,7 +93,7 @@ class _QrDialog extends StatelessWidget {
           constraints: BoxConstraints(maxWidth: 600),
           padding: EdgeInsets.all(16.0),
           decoration: BoxDecoration(
-            border: Border.all(color: orange, width: 4),
+            border: Border.all(color: orange, width: 2),
             borderRadius: BorderRadius.circular(12.0),
             color: Color.fromARGB(169, 27, 0, 53),
           ),
@@ -127,7 +127,7 @@ class _QrDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       side: BorderSide(
                         color: orange,
-                        width: 4,
+                        width: 2,
                       ),
                     ),
                     elevation: 10,

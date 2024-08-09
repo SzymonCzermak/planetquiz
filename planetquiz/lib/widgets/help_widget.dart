@@ -15,10 +15,10 @@ void showHelpOverlay(BuildContext context) {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Container(
-          constraints: BoxConstraints(maxWidth: 600),
+          constraints: BoxConstraints(maxWidth: 500),
           padding: EdgeInsets.all(16.0),
           decoration: BoxDecoration(
-            border: Border.all(color: orange, width: 4),
+            border: Border.all(color: orange, width: 2),
             borderRadius: BorderRadius.circular(12.0),
             color: Color.fromARGB(169, 27, 0, 53),
           ),
@@ -29,28 +29,20 @@ void showHelpOverlay(BuildContext context) {
                 width: double.infinity,
                 child: Align(
                   alignment: Alignment.center,
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      TyperAnimatedText(
-                        "-------EKRAN STARTOWY------\n"
-                        "1. Kliknij na pasek 'Wybierz swoją rolę'.\n"
-                        "2. Wybierz nazwę, która jest najbardziej zgodna z tobą!\n"
-                        "3. Kliknij przycisk 'START'.\n\n"
-                        "-----QUIZ ZASADY-----\n"
-                        "1. Przeczytaj pytanie oraz odpowiedzi.\n"
-                        "2. Wybierz jedną z nich i kliknij 'Następna'\n"
-                        "3. Kontynuuj, aż poznasz wyniki quizu.\n\n"
-                        "Jeśli zdobędziesz conajmniej 8 punktów otrzymasz zniżkę na gadżety!\n\n"
-                        "POWODZENIA!",
-                        textStyle: TextStyle(fontSize: 22.0, color: Colors.white),
-                        speed: Duration(milliseconds: 8),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                    isRepeatingAnimation: false,
-                    displayFullTextOnTap: true,
-                    stopPauseOnTap: true,
-                  ),
+                  child: Text(
+  "-------EKRAN STARTOWY------\n"
+  "1. Wybierz swoją role klikając w poszczególny kafelek'.\n"
+  "2. Kliknij przycisk 'START' i rozpocznij quiz!.\n\n"
+  "-----QUIZ ZASADY-----\n"
+  "1. Przeczytaj pytanie oraz odpowiedzi.\n"
+  "2. Wybierz jedną z nich i kliknij 'Następna'\n"
+  "3. Kontynuuj, aż poznasz wyniki quizu.\n\n"
+  "Jeśli zdobędziesz conajmniej 8 punktów otrzymasz zniżkę na gadżety!\n\n"
+  "POWODZENIA!",
+  style: TextStyle(fontSize: 22.0, color: Colors.white),
+  textAlign: TextAlign.center,
+),
+
                 ),
               ),
               SizedBox(height: 20),
@@ -64,7 +56,7 @@ void showHelpOverlay(BuildContext context) {
                     backgroundColor: grey,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
-                      side: BorderSide(color: orange, width: 4),
+                      side: BorderSide(color: orange, width: 2),
                     ),
                     elevation: 10,
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
