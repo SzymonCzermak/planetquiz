@@ -146,7 +146,7 @@ Widget build(BuildContext context) {
         height: 50,
         width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(color: orange, width: 4), // Kolor ramki i jej grubość
+          border: Border.all(color: orange, width: 2), // Kolor ramki i jej grubość
           borderRadius: BorderRadius.circular(5), // Zaokrąglenie rogów
           boxShadow: [
             BoxShadow(
@@ -269,61 +269,58 @@ Widget build(BuildContext context) {
             else // Else clause if the score is less than 8
 
             Positioned(
-  bottom: 100,
-  top: 900,
-  left: 150,
-  right: 150,
-  child: Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-    child: Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(40), // Adjusted to fit the button's border radius
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromRGBO(106, 6, 199, 1).withOpacity(0.5), // Semi-transparent shadow
-            spreadRadius: 15,
-            blurRadius: 60,
-            offset: Offset(0, 8), // Vertical offset for the shadow
-          ),
-        ],
-      ),
-      child: Container(
-  decoration: BoxDecoration(
-    border: Border.all(
-      color: orange, // Kolor ramki
-      width: 4.0, // Szerokość ramki
-    ),
-    borderRadius: BorderRadius.circular(64.0), // Promień zaokrąglenia ramki (opcjonalnie)
-  ),
-  child: TimerButton(
-                        label: "Spróbuj Ponownie",
-                        timeOutInSeconds: 5,
-                        onPressed: () {
-                          Navigator.of(context).pushAndRemoveUntil(
-                            createRoute(const FirstScreen()),
-                            (Route<dynamic> route) => false,
-                          );
-                        },
-    buttonType: ButtonType.textButton,
-    disabledColor: Color.fromARGB(148, 60, 1, 116),
-    color: violet,
-    activeTextStyle: const TextStyle(
-      color: gold,
-      fontSize: 24,
-      fontFamily: 'BungeeSpice',
-    ),
-    disabledTextStyle: const TextStyle(
-      color: red,
-      fontSize: 14,
-    ),
-  ),
-),
-
-
-
-    ),
-  ),
-),
+              bottom: 100,
+              top: 900,
+              left: 150,
+              right: 150,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(106, 6, 199, 1).withOpacity(0.5),
+                        spreadRadius: 15,
+                        blurRadius: 60,
+                        offset: Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: orange,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(64.0),
+                    ),
+                    child: TimerButton(
+                      label: "Spróbuj Ponownie",
+                      timeOutInSeconds: 5,
+                      onPressed: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                          createRoute(const FirstScreen()),
+                          (Route<dynamic> route) => false,
+                        );
+                      },
+                      buttonType: ButtonType.textButton,
+                      disabledColor: Color.fromARGB(148, 60, 1, 116),
+                      color: violet,
+                      activeTextStyle: const TextStyle(
+                        color: gold,
+                        fontSize: 24,
+                        fontFamily: 'BungeeSpice',
+                      ),
+                      disabledTextStyle: const TextStyle(
+                        color: red,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
           ],
         ),

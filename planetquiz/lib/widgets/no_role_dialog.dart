@@ -16,7 +16,7 @@ class NoRoleDialog extends StatelessWidget {
           constraints: BoxConstraints(maxWidth: 600),
           padding: EdgeInsets.all(16.0),
           decoration: BoxDecoration(
-            border: Border.all(color: orange, width: 4),
+            border: Border.all(color: orange, width: 2),
             borderRadius: BorderRadius.circular(12.0),
             color: Color.fromARGB(169, 27, 0, 53),
           ),
@@ -39,7 +39,7 @@ class NoRoleDialog extends StatelessWidget {
                     backgroundColor: Color.fromARGB(127, 177, 176, 176),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
-                      side: BorderSide(color: orange, width: 4),
+                      side: BorderSide(color: orange, width: 2),
                     ),
                     elevation: 10,
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
