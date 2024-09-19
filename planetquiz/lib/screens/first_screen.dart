@@ -44,7 +44,8 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   void initState() {
     super.initState();
-    _audioPlayer.setVolume(1.0); // Ustaw maksymalną głośność
+    _audioPlayer.setVolume(1.0);
+     // Ustaw maksymalną głośność
   }
 
   @override
@@ -105,7 +106,7 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
             ),
             Positioned(
-              top: 300,
+              top: 310,
               left: 50,
               right: 50,
               child: Column(
@@ -257,7 +258,7 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
             ),
             Positioned(
-              bottom: 415,
+              bottom: 408,
               right: 345,
               child: SizedBox(
                 width: 200,
@@ -353,7 +354,7 @@ class _FirstScreenState extends State<FirstScreen> {
               child: SocialMediaBar(),
             ),
             Positioned(
-              bottom: 415,
+              bottom: 408,
               right: 135,
               child: SizedBox(
                 width: 200,

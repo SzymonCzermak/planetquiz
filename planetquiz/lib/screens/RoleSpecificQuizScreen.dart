@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:planetquiz/models/question.dart';
 import 'package:planetquiz/models/questions.dart';
 import 'package:planetquiz/screens/result_screen.dart';
+import 'package:planetquiz/styles.dart';
 import 'package:planetquiz/widgets/answer_card.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:planetquiz/widgets/loading_screen.dart';
@@ -29,12 +30,15 @@ class _RoleSpecificQuizScreenState extends State<RoleSpecificQuizScreen> {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
+    @override
   void initState() {
     super.initState();
     score = widget.score;  // Initialize score with the passed initial score
-    questions = roleQuestions[widget.userRole] ?? [];
-    questions.shuffle();
+    List<Question> allQuestions = roleQuestions[widget.userRole] ?? [];
+    allQuestions.shuffle(); // Shuffle the questions randomly
+    questions = allQuestions.take(3).toList(); // Take only the first 3 shuffled questions
   }
+
 
   void playSound(String path) async {
     await _audioPlayer.play(AssetSource(path));
@@ -100,24 +104,84 @@ class _RoleSpecificQuizScreenState extends State<RoleSpecificQuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        toolbarHeight: 50,
-        automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            Text('Specjalnie pytania dla:    '),
-            Icon(widget.userRoleIcon),
-            SizedBox(width: 10),
-            Text(widget.userRole),
-            Spacer(),
-            Image.asset(
-              'assets/AlverniaLogo.png',
-              height: 100,
-              width: 100,
-            ),
-          ],
+  backgroundColor: Colors.black,
+  toolbarHeight: 75,
+  automaticallyImplyLeading: false, // Usunięcie domyślnego przycisku powrotu
+  title: Row(
+    children: [
+      Row(
+  children: [
+    IconButton(
+      icon: Icon(
+        Icons.arrow_back,
+        size: 30,
+        color: const Color.fromARGB(255, 255, 0, 0),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    ),
+    SizedBox(width: 5), // Odstęp między ikoną a tekstem
+    Text(
+      "powrót",
+      style: TextStyle(
+        fontSize: 15, // Rozmiar tekstu
+        color: Colors.white, // Kolor tekstu
+        fontWeight: FontWeight.bold,
+        fontFamily: 'BungeeSpice', // Waga czcionki
+      ),
+    ),
+  ],
+),
+      Spacer(),
+      SizedBox(width: 15),
+      Container(
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        violet, // Początkowy kolor gradientu
+        violet2, // Końcowy kolor gradientu
+      ],
+      begin: Alignment.topLeft, // Punkt początkowy gradientu
+      end: Alignment.bottomRight, // Punkt końcowy gradientu
+    ),
+    border: Border.all(
+      color: orange, // Kolor obramowania
+      width: 2, // Grubość obramowania
+    ),
+    borderRadius: BorderRadius.circular(8), // Zaokrąglenie rogów
+  ),
+  padding: EdgeInsets.all(8), // Wewnętrzne odstępy wewnątrz ramki
+  child: Row(
+    children: [
+      Icon(
+        widget.userRoleIcon,
+        size: 30,
+      ),
+      SizedBox(width: 10),
+      Text(
+        widget.userRole,
+        style: TextStyle(
+          fontSize: 20, // Rozmiar tekstu
+          color: Colors.white, // Kolor tekstu
+          fontWeight: FontWeight.bold,
+          fontFamily: 'BungeeSpice' // Waga czcionki
         ),
       ),
+    ],
+  ),
+)
+
+,
+      Spacer(),
+      Image.asset(
+        'assets/APELOGO.png',
+        height: 125,
+        width: 125,
+      ),
+    ],
+  ),
+),
       body: Stack(
         children: [
           Image.asset(

@@ -45,6 +45,8 @@ class _RobotkaAnimationHIState extends State<RobotkaAnimationHI> {
     });
   }
 
+  
+
   void _showWelcomeOverlay(BuildContext context) {
     if (_isOverlayVisible) return;
     _isOverlayVisible = true;

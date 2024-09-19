@@ -7,6 +7,8 @@ import 'package:planetquiz/widgets/answer_card.dart';
 import 'package:planetquiz/widgets/help_widget.dart';
 import 'package:planetquiz/widgets/next_button.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:vibration/vibration.dart';
+
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({
@@ -47,24 +49,30 @@ class _QuizScreenState extends State<QuizScreen> {
     await _audioPlayer.play(AssetSource(path));
   }
 
-  void pickAnswer(int value) {
-    if (selectedAnswerIndex != null) return;
+  void pickAnswer(int value) async {
+  if (selectedAnswerIndex != null) return;
 
-    setState(() {
-      selectedAnswerIndex = value;
-    });
-
-    final question = questions[randomQuestionIndices[questionIndex]];
-    if (selectedAnswerIndex == question.correctAnswerIndex) {
-      score++;
-      playSound('assets/sounds/correct_answer.mp3');
-    } else {
-      playSound('assets/sounds/wrong_answer.mp3');
-    }
+  // Sprawdzenie, czy urządzenie obsługuje wibracje
+  if (await Vibration.hasVibrator() ?? false) {
+    Vibration.vibrate(duration: 100); // Wibracje przez 100 ms
   }
 
+  setState(() {
+    selectedAnswerIndex = value;
+  });
+
+  final question = questions[randomQuestionIndices[questionIndex]];
+  if (selectedAnswerIndex == question.correctAnswerIndex) {
+    score++;
+    playSound('assets/sounds/correct_answer.mp3');
+  } else {
+    playSound('assets/sounds/wrong_answer.mp3');
+  }
+}
+
+
   void showCompletionDialog() {
-  int countdown = 10;
+  int countdown = 5;
   
   showGeneralDialog(
     context: context,
@@ -152,23 +160,84 @@ class _QuizScreenState extends State<QuizScreen> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
-          toolbarHeight: 50,
-          automaticallyImplyLeading: false,
-          title: Row(
-            children: [
-              Icon(widget.userRoleIcon),
-              SizedBox(width: 10),
-              Text(widget.userRole),
-              Spacer(),
-              Image.asset(
-                'assets/AlverniaLogo.png',
-                height: 100,
-                width: 100,
-              ),
-            ],
-          ),
+  backgroundColor: Colors.black,
+  toolbarHeight: 75,
+  automaticallyImplyLeading: false, // Usunięcie domyślnego przycisku powrotu
+  title: Row(
+    children: [
+      Row(
+  children: [
+    IconButton(
+      icon: Icon(
+        Icons.arrow_back,
+        size: 30,
+        color: const Color.fromARGB(255, 255, 0, 0),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    ),
+    SizedBox(width: 5), // Odstęp między ikoną a tekstem
+    Text(
+      "powrót",
+      style: TextStyle(
+        fontSize: 15, // Rozmiar tekstu
+        color: Colors.white, // Kolor tekstu
+        fontWeight: FontWeight.bold,
+        fontFamily: 'BungeeSpice', // Waga czcionki
+      ),
+    ),
+  ],
+),
+      Spacer(),
+      SizedBox(width: 15),
+      Container(
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        violet, // Początkowy kolor gradientu
+        violet2, // Końcowy kolor gradientu
+      ],
+      begin: Alignment.topLeft, // Punkt początkowy gradientu
+      end: Alignment.bottomRight, // Punkt końcowy gradientu
+    ),
+    border: Border.all(
+      color: orange, // Kolor obramowania
+      width: 2, // Grubość obramowania
+    ),
+    borderRadius: BorderRadius.circular(8), // Zaokrąglenie rogów
+  ),
+  padding: EdgeInsets.all(8), // Wewnętrzne odstępy wewnątrz ramki
+  child: Row(
+    children: [
+      Icon(
+        widget.userRoleIcon,
+        size: 30,
+      ),
+      SizedBox(width: 10),
+      Text(
+        widget.userRole,
+        style: TextStyle(
+          fontSize: 20, // Rozmiar tekstu
+          color: Colors.white, // Kolor tekstu
+          fontWeight: FontWeight.bold,
+          fontFamily: 'BungeeSpice' // Waga czcionki
         ),
+      ),
+    ],
+  ),
+)
+
+,
+      Spacer(),
+      Image.asset(
+        'assets/APELOGO.png',
+        height: 125,
+        width: 125,
+      ),
+    ],
+  ),
+),
         body: Stack(
           children: [
             Image.asset(
