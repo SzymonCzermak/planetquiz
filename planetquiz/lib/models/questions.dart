@@ -22,10 +22,10 @@ const List<Question> questions = [
     ],
   ),
   Question(
-    question: 'Kto założył Alvernia Studios?',
+    question: 'Kto akutalnie jest włascicielem Alvernia Planet?',
     correctAnswerIndex: 0,
     options: [
-      'a) Stanisław Tyczyński',
+      'a) Grzegorz Hajdarowicz',
       'b) Roman Polański',
       'c) Marek Serafiński',
       'd) Stanisław Lem',

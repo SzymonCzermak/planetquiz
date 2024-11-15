@@ -28,7 +28,7 @@ class WinWidget extends StatelessWidget {
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
                   color: Colors.white)),
-          Text('Oto twój kupon rabatowy \n -5% na gadżet.',
+          Text('Oto twój kupon rabatowy \n -10% na gadżet.',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 30,
